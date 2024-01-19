@@ -299,21 +299,6 @@ public class TeleOpDrive extends LinearOpMode {
                 HEADING_PIDF.setSetPoint(Math.toRadians(headingTarget));
             }
 
-            //Hook engage control
-            // If button is pressed, engage hooks and update LEDs to OFF or the colour of the locked pixel
-            isHook = HardwareMapping.a;
-            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.Y) /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.Y)*/) {
-                //intake.setCurrentHook(!isHook);
-                //if(isHook) {
-                runningActions.add(new ParallelAction(
-                        outtake.bottomHook("closed"), outtake.upperHook("closed")
-                ));
-                //}
-                /*else runningActions.add(new ParallelAction(
-                        outtake.bottomHook("open"), outtake.upperHook("open"),
-                        intake.sensingOn()
-                ));*/
-            }
 
             //Outtake 90 degree rotation
             /*if((robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.A)
@@ -349,6 +334,24 @@ public class TeleOpDrive extends LinearOpMode {
                         outtake.bottomHook("open"), outtake.upperHook("open")
                 ));
             }
+
+            //Hook engage control
+            // If button is pressed, engage hooks and update LEDs to OFF or the colour of the locked pixel
+            isHook = HardwareMapping.a;
+            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.Y) /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.Y)*/) {
+                //intake.setCurrentHook(!isHook);
+                //if(isHook) {
+                runningActions.add(new ParallelAction(
+                        outtake.bottomHook("closed"), outtake.upperHook("closed")
+                ));
+                //}
+                /*else runningActions.add(new ParallelAction(
+                        outtake.bottomHook("open"), outtake.upperHook("open"),
+                        intake.sensingOn()
+                ));*/
+            }
+
+
             //Intake reverse control manual
             /*if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.B)){
                 isIntakePowered = false;

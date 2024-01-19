@@ -100,11 +100,10 @@ public class HardwareMapping {
         outtakeClawUpper = hwMap.get(Servo.class, "outtakeClawUpper");
         planeLauncherServo = hwMap.get(Servo.class, "planeLauncherServo");
 
-        outtakePitchLeft.setInverted(true);
+        outtakePitchLeft.setInverted(false);
         outtakeRollLeft.setInverted(true);
         intakeServoRight.setDirection(Servo.Direction.REVERSE);
-        outtakeRollLeft.setInverted(true);
-
+        outtakeClawBottom.setDirection(Servo.Direction.REVERSE);
 
 
         /* Motors */
