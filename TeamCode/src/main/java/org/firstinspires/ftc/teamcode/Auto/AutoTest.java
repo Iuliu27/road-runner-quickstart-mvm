@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.PoseTransfer;
 
 @Autonomous(name="VASILEEEEE")
-public class AutoTest extends LinearOpMode {
+public class AutoTest extends LinearOpMode { //ok
     HardwareMapping Robot=new HardwareMapping();
     HardwareMapping.Intake intake = Robot.new Intake();
     HardwareMapping.Outtake outtake = Robot.new Outtake();
