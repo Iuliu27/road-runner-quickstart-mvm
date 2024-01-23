@@ -38,7 +38,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.checkerframework.checker.units.qual.Angle;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
-import org.firstinspires.ftc.teamcode.DefVal;
+import org.firstinspires.ftc.teamcode.Variables.DefVal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +152,7 @@ public class TeleOpDrive extends LinearOpMode {
                 outtake.pivot(DefVal.pivot0),
                 outtake.latch("closed")
         ));
-       // robot.checkColorRange("upper");
+        // robot.checkColorRange("upper");
         //robot.checkColorRange("bottom");
 
         // Variables
@@ -186,9 +186,9 @@ public class TeleOpDrive extends LinearOpMode {
                 case TELEOP:
                     currentVelPose = new PoseVelocity2d( // Slowdown by pressing right trigger, is gradual
                             new Vector2d(
-                                    -gamepad2.left_stick_y/(1+triggerSlowdown)/1.5,
-                                    -gamepad2.left_stick_x/(1+triggerSlowdown)/1.5),
-                            -gamepad2.right_stick_x/(1+triggerSlowdown*3)/1.5
+                                    -gamepad2.left_stick_y/(1+triggerSlowdown),
+                                    -gamepad2.left_stick_x/(1+triggerSlowdown)),
+                            -gamepad2.right_stick_x/(1+triggerSlowdown*3)
                     );
                     break;
                 case HEADING_LOCK:
@@ -394,7 +394,7 @@ public class TeleOpDrive extends LinearOpMode {
             //Plane and hanging, only works if 50s have passed since teleop started, might be a pain to troubleshoot!!!!!
             if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)
                 /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)*/){
-                if(System.currentTimeMillis() > startTime + DefVal.endgameTime) runningActions.add(robot.launchPlane());
+                /*if(System.currentTimeMillis() > startTime + DefVal.endgameTime)*/ runningActions.add(robot.launchPlane());
             }
 //            if(robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.B)){
 //                if(System.currentTimeMillis() > startTime + DefVal.endgameTime){
@@ -422,7 +422,7 @@ public class TeleOpDrive extends LinearOpMode {
             runningActions = newActions;
             dash.sendTelemetryPacket(packet);
 
-           // upperSensorState = robot.checkColorRange("upper");      // Update variables and use them below
+            // upperSensorState = robot.checkColorRange("upper");      // Update variables and use them below
             //bottomSensorState = robot.checkColorRange("bottom");
 
             telemetry.addData("x", currentPose.position.x);
@@ -430,7 +430,7 @@ public class TeleOpDrive extends LinearOpMode {
             telemetry.addData("heading", currentPose.heading.log());
             //telemetry.addData("pitch: ", pitch);
             telemetry.addData("Heading target: ", headingTarget);
-           // telemetry.addData("Pixel upper: ", upperSensorState.toString());
+            // telemetry.addData("Pixel upper: ", upperSensorState.toString());
             //telemetry.addData("Pixel bottom: ", bottomSensorState.toString());
             debuggingTelemetry();
             telemetry.update();
