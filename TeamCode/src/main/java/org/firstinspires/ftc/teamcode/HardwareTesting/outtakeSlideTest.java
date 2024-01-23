@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.HardwareTesting;
 
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
@@ -8,10 +8,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.DefVal;
+import org.firstinspires.ftc.teamcode.Variables.DefVal;
 
 @TeleOp(name="outtakeSlideTest")
-public class slideTest extends LinearOpMode {
+public class outtakeSlideTest extends LinearOpMode {
 
     private DcMotorEx slideMotorLeft, slideMotorRight;
 
@@ -38,7 +38,7 @@ public class slideTest extends LinearOpMode {
 
         slideMotorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         slideMotorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        slideMotorRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        slideMotorLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         GamepadEx gamepadEx = new GamepadEx(gamepad2);
 
