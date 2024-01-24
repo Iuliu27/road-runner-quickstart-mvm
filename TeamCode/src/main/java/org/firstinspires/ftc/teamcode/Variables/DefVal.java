@@ -13,9 +13,9 @@ public class DefVal {
     public static double latchOpen = 0;
     public static double latchClosed = 0.5;
 
-    public static double upperHookOpen = 1;
-    public static double upperHookClosed = 0.85;
-    public static double bottomHookClosed = 0.75;
+    public static double upperHookOpen = 0.95;
+    public static double upperHookClosed = 0.8;
+    public static double bottomHookClosed = 0.8;
     public static double bottomHookOpen = 0.9;
 
     //CM converted to ticks

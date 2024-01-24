@@ -40,6 +40,12 @@ public class AutoTest extends LinearOpMode { //ok
                 .splineToLinearHeading(new Pose2d(-29, -33, Math.toRadians(60)), Math.toRadians(60))
                 .build();
 
+        cPose=firstPose;
+
+        Action TrajFront=drive.actionBuilder(cPose)
+
+                .build();
+
         waitForStart();
 
         Actions.runBlocking(new SequentialAction(
