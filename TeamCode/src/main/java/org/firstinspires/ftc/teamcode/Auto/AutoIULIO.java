@@ -1,29 +1,28 @@
 package org.firstinspires.ftc.teamcode.Auto;
 
-import androidx.annotation.NonNull;
-
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.Camera;
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
-//import org.firstinspires.ftc.teamcode.cameraStuff.cameraHW;
+import org.firstinspires.ftc.teamcode.cameraStuff.cameraHW;
+
 
 @Autonomous(name = "AutoIulio", group = "Iuliu")
 //TODO:autonomie de langa backdrop rosu
+@Disabled
 public class AutoIULIO extends LinearOpMode {
 
     HardwareMapping robot = new HardwareMapping();
     HardwareMapping.Intake intake = robot.new Intake();
     HardwareMapping.Outtake outtake = robot.new Outtake();
     HardwareMapping.Auto auto = robot.new Auto();
-    //cameraHW camera = new cameraHW();
+    cameraHW camera = new cameraHW();
     Pose2d StartPose = new Pose2d(11, -66 , Math.toRadians(90));
     String PropZone="Middle";
 
@@ -66,8 +65,8 @@ public class AutoIULIO extends LinearOpMode {
                 .build();
 
 
-        /// camera.initTeamPropCamera("RED");
-        //PropZone=camera.isPointInsideRect();
+         camera.initTeamPropCamera("RED");
+        PropZone= cameraHW.ZoneDetector.isPointInsideRect();
 
         waitForStart();
 

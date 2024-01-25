@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Mara.HardwareMapp;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.cameraStuff.cameraHW;
 
-@Autonomous(name = "AutoTestRedStack")
+@Autonomous(name = "Auto test")
 public class AutoTestRedStack extends LinearOpMode {
     //Robotul de langa stack merge pe sus, cel de langa backboard pe jos
     //Nu ia pixel prima oare cand il lasa pe cel mov jos
@@ -27,7 +27,7 @@ public class AutoTestRedStack extends LinearOpMode {
 
         Robot.init(hardwareMap);
         camera.initTeamPropCamera("RED");
-        elementPosition=camera.isPointInsideRect();
+        elementPosition= cameraHW.ZoneDetector.isPointInsideRect();
         //Robot.gamepadInit(gamepad1, gamepad2);
 
         Pose2d firstPose=new Pose2d(-34.5,-58,90);
@@ -315,7 +315,7 @@ public class AutoTestRedStack extends LinearOpMode {
                 .build();
 
         camera.initTeamPropCamera("RED");
-        elementPosition=camera.isPointInsideRect();
+        elementPosition= cameraHW.ZoneDetector.isPointInsideRect();
 
         waitForStart();
 

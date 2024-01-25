@@ -3,19 +3,19 @@ package org.firstinspires.ftc.teamcode.AutonomieMara;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
-import com.acmerobotics.roadrunner.SafePathBuilder;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.ftc.Actions;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Mara.HardwareMapp;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.cameraStuff.cameraHW;
 
 @Autonomous(name = "AutoRedStack")
+@Disabled
 public class AutoRedStack extends LinearOpMode {
     //Robotul de langa stack merge pe sus, cel de langa backboard pe jos
     HardwareMapp Robot = new HardwareMapp();
@@ -28,7 +28,7 @@ public class AutoRedStack extends LinearOpMode {
 
         Robot.init(hardwareMap);
         camera.initTeamPropCamera("RED");
-        elementPosition=camera.isPointInsideRect();
+        elementPosition= cameraHW.ZoneDetector.isPointInsideRect();
         //Robot.gamepadInit(gamepad1, gamepad2);
 
         Pose2d firstPose=new Pose2d(-34.5,-58,90);
@@ -316,7 +316,7 @@ public class AutoRedStack extends LinearOpMode {
                 .build();
 
         camera.initTeamPropCamera("RED");
-        elementPosition=camera.isPointInsideRect();
+        elementPosition= cameraHW.ZoneDetector.isPointInsideRect();
 
         waitForStart();
 

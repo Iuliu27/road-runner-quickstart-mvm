@@ -1,16 +1,12 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Red.PixelParking;
 
-import androidx.annotation.NonNull;
-
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
-import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.Camera;
 import org.firstinspires.ftc.teamcode.Autonomous.ActionStorage;
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
@@ -18,6 +14,7 @@ import org.firstinspires.ftc.teamcode.cameraStuff.cameraHW;
 
 @Autonomous(name = "AutoWithCamera-Red-sus", group = "Iuliu")
 //TODO:autonomie de langa backdrop rosu
+ @Disabled
 public class AutoRedWcamera extends LinearOpMode {
 
     HardwareMapping robot = new HardwareMapping();
@@ -68,10 +65,16 @@ public class AutoRedWcamera extends LinearOpMode {
                 .build();
 
 
-        camera.initTeamPropCamera("RED");
-        PropZone=camera.isPointInsideRect();
+
 
                 waitForStart();
+        camera.initTeamPropCamera("RED");
+
+        while (opModeIsActive() && !isStarted()) {
+
+
+            PropZone= cameraHW.ZoneDetector.isPointInsideRect();
+        }
 
                 if(isStopRequested())
                     return;
