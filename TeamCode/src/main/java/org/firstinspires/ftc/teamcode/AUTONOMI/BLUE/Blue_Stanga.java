@@ -91,6 +91,9 @@ public class Blue_Stanga extends LinearOpMode {
 
         waitForStart();
 
+        externalCamera.stopStreaming();
+        externalCamera.closeCameraDevice();
+
         if(PropZone=="LEFT"){
             Actions.runBlocking(
                     LeftLine
