@@ -1,11 +1,20 @@
 package org.firstinspires.ftc.teamcode.AUTONOMI.BLUE;
 
+import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.Vector2d;
+import com.acmerobotics.roadrunner.ftc.Actions;
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.HardwareMapping;
+import org.firstinspires.ftc.teamcode.MecanumDrive;
+import org.firstinspires.ftc.teamcode.Variables.DefVal;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
@@ -22,20 +31,25 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.math.UMathKt;
+
 @Autonomous(name = "Blue_stanga",group="Iuliu")
 public class Blue_Stanga extends LinearOpMode {
-
-    ElapsedTime timer;
-
+    Pose2d beginPose = new Pose2d(-34.5, -58, Math.toRadians(90));
+    HardwareMapping robot = new HardwareMapping();
     OpenCvCamera externalCamera;
+    Servo intakeServoRight,intakeServoLeft;
     nume pipeline;
-
     String PropZone ="RIGHT";
 
     @Override
     public void runOpMode() throws InterruptedException {
-
-
+        robot.init(hardwareMap);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, beginPose);
+        intakeServoLeft=hardwareMap.get(Servo.class,"intakeServoLeft");
+        intakeServoRight=hardwareMap.get(Servo.class,"intakeServoRight");
+        intakeServoLeft.setPosition(DefVal.iLevel6);
+        intakeServoRight.setPosition(DefVal.iLevel6);
         // Initialize the camera and pipeline
         initExternalCamera();
 
@@ -53,19 +67,52 @@ public class Blue_Stanga extends LinearOpMode {
 
             telemetry.update();
         }
+
+        Action LeftLine= drive.actionBuilder(beginPose) //stanga
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-39,-36,Math.toRadians(120)),Math.toRadians(90))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(-37,-45,Math.toRadians(120)),Math.toRadians(90))
+                .build();
+
+        Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
+                .splineToLinearHeading(new Pose2d(-35,-29,Math.toRadians(90)),Math.toRadians(90))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(-35,-42,Math.toRadians(90)),Math.toRadians(90))
+                .build();
+
+        Action RightLine=drive.actionBuilder(beginPose) //dreapta
+                .splineTo(new Vector2d(-28,-33),Math.toRadians(60))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(-42,-52,Math.toRadians(90)),Math.toRadians(180))
+                .setReversed(false)
+                .splineTo(new Vector2d(-63,-25), Math.toRadians(180))
+                .build();
+
         waitForStart();
 
-
-
+        if(PropZone=="LEFT"){
+            Actions.runBlocking(
+                    LeftLine
+            );
+        } else if(PropZone=="MIDDLE") {
+            Actions.runBlocking(
+                    MiddleLine
+            );
+        } else if(PropZone=="RIGHT") {
+            Actions.runBlocking(
+                    RightLine
+            );
+        }
         while (opModeIsActive()) {
-
+            //telemetry
         }
     }
 
 
 
 
-
+ //nu ne pasa
 
 
 

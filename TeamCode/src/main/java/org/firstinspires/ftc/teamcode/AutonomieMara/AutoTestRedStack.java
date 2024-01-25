@@ -88,7 +88,7 @@ public class AutoTestRedStack extends LinearOpMode {
                 .setTangent(Math.toRadians(90))
                 .splineToLinearHeading(new Pose2d(-38.39, -12.02, Math.toRadians(0)), Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(27, -12.02, Math.toRadians(0)), Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(48, -41.31, Math.toRadians(0)), Math.toRadians(0))
+                //.splineToLinearHeading(new Pose2d(48, -41.31, Math.toRadians(0)), Math.toRadians(0))
                 /*.afterDisp(10, new SequentialAction(
                         Robot.misum("MIDDLE"),
                         Robot.turnOutake("turn"),

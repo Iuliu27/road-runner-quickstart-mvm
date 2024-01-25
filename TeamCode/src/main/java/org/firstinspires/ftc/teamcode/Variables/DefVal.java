@@ -35,7 +35,8 @@ public class DefVal {
     public static double iLevel3 = 0.13;
     public static double iLevel4 = 0.145;
     public static double iLevel5 = 0.16;
-    public static double iLevel6 = 0.4;
+
+    public static double iLevel6 = 0.35;
 
     public static double yaw0 = 0.75;
     public static double yaw90 = 1.3;

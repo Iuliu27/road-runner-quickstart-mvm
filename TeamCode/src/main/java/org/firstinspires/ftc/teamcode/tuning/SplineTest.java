@@ -20,7 +20,9 @@ public final class SplineTest extends LinearOpMode {
             Actions.runBlocking(
                 drive.actionBuilder(beginPose)
                         .setReversed(false)
-                        .splineToLinearHeading(new Pose2d(-29, -33, Math.toRadians(60)), Math.toRadians(60))
+                        .splineTo(new Vector2d(4, -30), Math.PI / 2)
+                        .setReversed(true)
+                        .splineTo(new Vector2d(-34.5, -58), Math.PI)
                         .build());
         } else if (TuningOpModes.DRIVE_CLASS.equals(TankDrive.class)) {
             TankDrive drive = new TankDrive(hardwareMap, beginPose);
