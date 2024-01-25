@@ -4,6 +4,7 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Actions;
 import com.acmerobotics.roadrunner.SleepAction;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -11,6 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.Variables.DefVal;
 
 @Autonomous(name="Autoparcare")
+@Disabled
 public class Autoparcare extends LinearOpMode {
     public Servo intakeServoLeft, intakeServoRight;
     public DcMotorEx leftFront, leftBack, rightBack, rightFront;

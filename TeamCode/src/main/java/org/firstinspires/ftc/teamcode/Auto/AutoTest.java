@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.PoseTransfer;
 import org.opencv.core.Mat;
 
 @Autonomous(name="VASILEEEEE")
+
 public class AutoTest extends LinearOpMode { //ok
     HardwareMapping Robot = new HardwareMapping();
     HardwareMapping.Intake intake = Robot.new Intake();

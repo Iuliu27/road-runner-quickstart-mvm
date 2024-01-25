@@ -16,6 +16,7 @@
 //import org.firstinspires.ftc.teamcode.Variables.DefVal;
 //
 //@Autonomous(group = "Auto Red", name = "Auto2PixelDreaptaRed")
+//@Disabled
 //public class Auto2PixelDreaptaRed extends LinearOpMode {
 //    /* Init whatever you need */
 //    HardwareMapping robot = new HardwareMapping();

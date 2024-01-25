@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.AutonomieMara;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,6 +13,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Variables.DefVal;
 
 @Autonomous(name = "AutoFront")
+@Disabled
 public class AutoFront extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException{

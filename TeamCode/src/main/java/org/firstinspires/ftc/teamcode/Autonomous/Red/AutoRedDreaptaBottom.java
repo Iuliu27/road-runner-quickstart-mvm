@@ -8,6 +8,7 @@ import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Autonomous.ActionStorage;
@@ -17,6 +18,7 @@ import org.firstinspires.ftc.teamcode.PoseTransfer;
 import org.firstinspires.ftc.teamcode.Variables.DefVal;
 
 @Autonomous(group = "Auto Red", name = "AutoDreaptaRedBottom")
+@Disabled
 public class AutoRedDreaptaBottom extends LinearOpMode {
     /* Init whatever you need */
     HardwareMapping robot = new HardwareMapping();
