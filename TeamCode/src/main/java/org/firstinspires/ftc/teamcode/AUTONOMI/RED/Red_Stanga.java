@@ -30,7 +30,7 @@ public class Red_Stanga extends LinearOpMode {
     nume pipeline;
 
     String PropZone ="RIGHT";
-
+//
     @Override
     public void runOpMode() throws InterruptedException {
 

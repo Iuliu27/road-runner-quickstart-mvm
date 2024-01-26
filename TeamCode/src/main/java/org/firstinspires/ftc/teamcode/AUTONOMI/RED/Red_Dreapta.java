@@ -66,7 +66,7 @@ public class Red_Dreapta extends LinearOpMode {
 
 
 
-
+//
 
 
     private void initExternalCamera() {
