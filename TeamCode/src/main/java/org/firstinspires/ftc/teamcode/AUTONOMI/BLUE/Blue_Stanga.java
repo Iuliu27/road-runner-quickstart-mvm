@@ -70,21 +70,30 @@ public class Blue_Stanga extends LinearOpMode {
 
         Action LeftLine= drive.actionBuilder(beginPose) //stanga
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-39,-36,Math.toRadians(120)),Math.toRadians(90))
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(-37,-45,Math.toRadians(120)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-41,-36,Math.toRadians(120)),Math.toRadians(90))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-90))
+                .waitSeconds(0.1)
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
                 .splineToLinearHeading(new Pose2d(-35,-29,Math.toRadians(90)),Math.toRadians(90))
-                .setReversed(true)
+                .setTangent(Math.toRadians(270))
                 .splineToLinearHeading(new Pose2d(-35,-42,Math.toRadians(90)),Math.toRadians(90))
+                .waitSeconds(0.1)
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action RightLine=drive.actionBuilder(beginPose) //dreapta
-                .splineTo(new Vector2d(-28,-33),Math.toRadians(60))
-                .splineToLinearHeading(new Pose2d(-42,-52,Math.toRadians(90)),Math.toRadians(180))
-                .splineTo(new Vector2d(-63,-25), Math.toRadians(180))
+                .splineTo(new Vector2d(-27,-32),Math.toRadians(60))
+                .setTangent(Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(270))
+                .waitSeconds(0.1)
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         waitForStart();
@@ -158,8 +167,8 @@ public class Blue_Stanga extends LinearOpMode {
         public Scalar selectedColor = new Scalar(0, 0, 255);
         // public Scalar lowerBlue = new Scalar(106, 165, 55);
         // public Scalar upperBlue = new Scalar(230, 255, 255);
-        public Scalar lowerBlue = new Scalar(106, 100, 50);
-        public Scalar upperBlue = new Scalar(230, 255, 255);
+        public Scalar lowerRed = new Scalar (0, 90, 7);
+        public Scalar upperRed = new Scalar (10, 255, 196);
         private int selectedRect = -1;
 
         public String isPointInsideRect() {
@@ -178,7 +187,7 @@ public class Blue_Stanga extends LinearOpMode {
 
             Imgproc.cvtColor(input, hsvImage, Imgproc.COLOR_RGB2HSV);
 
-            Core.inRange(hsvImage, lowerBlue, upperBlue, mask);
+            Core.inRange(hsvImage, lowerRed, upperRed, mask);
 
             contours.clear();
             Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
