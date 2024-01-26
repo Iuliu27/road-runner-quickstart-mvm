@@ -165,8 +165,9 @@ public class Blue_Stanga extends LinearOpMode {
         private Point squareCenter = new Point();
         public Scalar nonSelectedColor = new Scalar(255, 0, 0);
         public Scalar selectedColor = new Scalar(0, 0, 255);
-        // public Scalar lowerBlue = new Scalar(106, 165, 55);
-        // public Scalar upperBlue = new Scalar(230, 255, 255);
+
+         public Scalar lowerBlue = new Scalar(106, 165, 55);
+         public Scalar upperBlue = new Scalar(230, 255, 255);
         public Scalar lowerRed = new Scalar (0, 90, 7);
         public Scalar upperRed = new Scalar (10, 255, 196);
         private int selectedRect = -1;
@@ -187,7 +188,7 @@ public class Blue_Stanga extends LinearOpMode {
 
             Imgproc.cvtColor(input, hsvImage, Imgproc.COLOR_RGB2HSV);
 
-            Core.inRange(hsvImage, lowerRed, upperRed, mask);
+            Core.inRange(hsvImage, lowerBlue, upperBlue, mask);
 
             contours.clear();
             Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);

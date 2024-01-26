@@ -21,7 +21,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.ArrayList;
 import java.util.List;
 
-@Autonomous(name = "Blue_Dreapta",group="Iuliu")
+@Autonomous(name = "Red_Stanga",group="Iuliu")
 public class Red_Stanga extends LinearOpMode {
 
     ElapsedTime timer;
