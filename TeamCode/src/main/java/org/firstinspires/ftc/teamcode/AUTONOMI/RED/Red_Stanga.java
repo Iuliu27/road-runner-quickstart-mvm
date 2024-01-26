@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.AUTONOMI.BLUE;
+package org.firstinspires.ftc.teamcode.AUTONOMI.RED;
 
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous(name = "Blue_Dreapta",group="Iuliu")
-public class Blue_Dreapta extends LinearOpMode {
+public class Red_Stanga extends LinearOpMode {
 
     ElapsedTime timer;
 
@@ -109,8 +109,8 @@ public class Blue_Dreapta extends LinearOpMode {
         public Scalar selectedColor = new Scalar(0, 0, 255);
         // public Scalar lowerBlue = new Scalar(106, 165, 55);
         // public Scalar upperBlue = new Scalar(230, 255, 255);
-        public Scalar lowerBlue = new Scalar(106, 100, 50);
-        public Scalar upperBlue = new Scalar(230, 255, 255);
+        public Scalar lowerRed = new Scalar (0, 90, 7);
+        public Scalar upperRed = new Scalar (10, 255, 196);
         private int selectedRect = -1;
 
         public String isPointInsideRect() {
@@ -129,7 +129,7 @@ public class Blue_Dreapta extends LinearOpMode {
 
             Imgproc.cvtColor(input, hsvImage, Imgproc.COLOR_RGB2HSV);
 
-            Core.inRange(hsvImage, lowerBlue, upperBlue, mask);
+            Core.inRange(hsvImage, lowerRed, upperRed, mask);
 
             contours.clear();
             Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);

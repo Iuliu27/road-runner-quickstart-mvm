@@ -286,14 +286,14 @@ public class MeepMeepStorage1 {
     RoadRunnerBotEntity IulioCameraAuto = new DefaultBotBuilder(meepMeep)
             .setConstraints(45, 50, Math.toRadians(180), Math.toRadians(180), 15.1)
             .followTrajectorySequence(driveShim ->
-                    driveShim.trajectorySequenceBuilder(new Pose2d(-36.55, -61.08, Math.toRadians(90.00)))
-                            .splineTo(new Vector2d(-40.07, -25.62), Math.toRadians(98.24))
-                            .setReversed(true)
-                            .splineToConstantHeading(new Vector2d(-17.22, -37.72), Math.toRadians(92.56))
-                            .setReversed(false)
-                            .lineToSplineHeading(new Pose2d(57.21, -37.22, Math.toRadians(0.39)))
-
+                    driveShim.trajectorySequenceBuilder(new Pose2d(11.34, 61.92, Math.toRadians(270.00))).splineTo(new Vector2d(0.59, 33.19), Math.toRadians(249.52))
+                            .splineTo(new Vector2d(0.59, 33.19), Math.toRadians(249.52))
+                            .lineTo(new Vector2d(19.24, 54.86))
+                            .splineTo(new Vector2d(52.34, 41.25), Math.toRadians(0.00))
                             .build()
+
+
+
 
             );
     RoadRunnerBotEntity IulioCameraAuto2 = new DefaultBotBuilder(meepMeep)
@@ -312,65 +312,6 @@ public class MeepMeepStorage1 {
 
 
 
-    RoadRunnerBotEntity AutoDreaptaRedUpper = new DefaultBotBuilder(meepMeep)
-            // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-            .setConstraints(45, 50, Math.toRadians(180), Math.toRadians(180), 15.1)
-            .followTrajectorySequence(driveShim ->
-                            driveShim.trajectorySequenceBuilder(new Pose2d(-34.5 + 2 * 24, -58, Math.toRadians(90)))
-
-                                    //RIGHT
-//                            .splineToLinearHeading(new Pose2d(-30 + 2*24, -33, Math.toRadians(60)), Math.toRadians(60))
-//                            .setReversed(true)
-//                            .splineToLinearHeading(leftBackboardPose, Math.toRadians(0))
-
-                                    //MIDDLE
-//                            .splineToLinearHeading(new Pose2d(-32.5 + 2*24, -33, Math.toRadians(80)), Math.toRadians(80))
-//                            .setReversed(true)
-//                            .splineToLinearHeading(middleBackboardPose, Math.toRadians(0))
-
-
-                                    //LEFT
-                                    .splineTo(new Vector2d(13.5, -53), Math.toRadians(90))
-                                    .splineTo(new Vector2d(4.5, -33), Math.toRadians(120))
-                                    .setReversed(true)
-                                    .splineToLinearHeading(new Pose2d(49, -30, Math.toRadians(0)), Math.toRadians(0))
-
-                                    //middleToStack
-                                    .setReversed(true)
-                                    .splineToLinearHeading(new Pose2d(25, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    .splineToLinearHeading(new Pose2d(-34, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    .splineToLinearHeading(new Pose2d(-57, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    //stackToLeft
-                                    .setReversed(false)
-                                    .splineToLinearHeading(new Pose2d(-34, -12.5, Math.toRadians(0)), Math.toRadians(0))
-                                    .splineToLinearHeading(new Pose2d(25, -12.5, Math.toRadians(0)), Math.toRadians(0))
-                                    .splineToLinearHeading(new Pose2d(49, -30, Math.toRadians(0)), Math.toRadians(0))
-                                    //leftToStack
-                                    .setReversed(true)
-                                    .splineToLinearHeading(new Pose2d(25, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    .splineToLinearHeading(new Pose2d(-34, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    .splineToLinearHeading(new Pose2d(-57, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    //stackToLeft
-                                    .setReversed(false)
-                                    .splineToLinearHeading(new Pose2d(-34, -12.5, Math.toRadians(0)), Math.toRadians(0))
-                                    .splineToLinearHeading(new Pose2d(25, -12.5, Math.toRadians(0)), Math.toRadians(0))
-                                    .splineToLinearHeading(new Pose2d(49, -30, Math.toRadians(0)), Math.toRadians(0))
-                                    //leftToStack
-                                    .setReversed(true)
-                                    .splineToLinearHeading(new Pose2d(25, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    .splineToLinearHeading(new Pose2d(-34, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    .splineToLinearHeading(new Pose2d(-57, -12.5, Math.toRadians(0)), Math.toRadians(180))
-                                    //stackToLeft
-                                    .setReversed(false)
-                                    .splineToLinearHeading(new Pose2d(-34, -12.5, Math.toRadians(0)), Math.toRadians(0))
-                                    .splineToLinearHeading(new Pose2d(25, -12.5, Math.toRadians(0)), Math.toRadians(0))
-                                    .splineToLinearHeading(new Pose2d(49, -30, Math.toRadians(0)), Math.toRadians(0))
-                                    //parkUpper
-                                    .setReversed(false)
-                                    .setTangent(Math.toRadians(90))
-                                    .splineToLinearHeading(new Pose2d(49, -19, Math.toRadians(0)), Math.toRadians(90))
-                                    .build()
-            );
     RoadRunnerBotEntity LinieMijloc=new DefaultBotBuilder(meepMeep)    //Linie mijloc
             .setConstraints(45, 50, Math.toRadians(180), Math.toRadians(180), 15.1)
             .followTrajectorySequence(driveShim ->

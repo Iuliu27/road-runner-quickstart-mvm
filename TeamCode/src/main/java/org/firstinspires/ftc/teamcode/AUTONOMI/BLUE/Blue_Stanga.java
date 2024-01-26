@@ -83,9 +83,7 @@ public class Blue_Stanga extends LinearOpMode {
 
         Action RightLine=drive.actionBuilder(beginPose) //dreapta
                 .splineTo(new Vector2d(-28,-33),Math.toRadians(60))
-                .setReversed(true)
                 .splineToLinearHeading(new Pose2d(-42,-52,Math.toRadians(90)),Math.toRadians(180))
-                .setReversed(false)
                 .splineTo(new Vector2d(-63,-25), Math.toRadians(180))
                 .build();
 
@@ -160,8 +158,8 @@ public class Blue_Stanga extends LinearOpMode {
         public Scalar selectedColor = new Scalar(0, 0, 255);
         // public Scalar lowerBlue = new Scalar(106, 165, 55);
         // public Scalar upperBlue = new Scalar(230, 255, 255);
-        public Scalar lowerRed = new Scalar (0, 90, 7);
-        public Scalar upperRed = new Scalar (10, 255, 196);
+        public Scalar lowerBlue = new Scalar(106, 100, 50);
+        public Scalar upperBlue = new Scalar(230, 255, 255);
         private int selectedRect = -1;
 
         public String isPointInsideRect() {
@@ -180,7 +178,7 @@ public class Blue_Stanga extends LinearOpMode {
 
             Imgproc.cvtColor(input, hsvImage, Imgproc.COLOR_RGB2HSV);
 
-            Core.inRange(hsvImage, lowerRed, upperRed, mask);
+            Core.inRange(hsvImage, lowerBlue, upperBlue, mask);
 
             contours.clear();
             Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
