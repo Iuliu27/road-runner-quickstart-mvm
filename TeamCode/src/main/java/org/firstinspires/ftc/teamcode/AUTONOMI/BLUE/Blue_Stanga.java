@@ -75,25 +75,25 @@ public class Blue_Stanga extends LinearOpMode {
                 .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
                 .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
-                .splineToLinearHeading(new Pose2d(-35,-29,Math.toRadians(90)),Math.toRadians(90))
-                .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(-35,-42,Math.toRadians(90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-34.5,-28,Math.toRadians(90)),Math.toRadians(90))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
                 .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action RightLine=drive.actionBuilder(beginPose) //dreapta
                 .splineTo(new Vector2d(-27,-32),Math.toRadians(60))
-                .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(270))
+                .setTangent(Math.toRadians(-270))
+                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-270))
                 .waitSeconds(0.1)
                 .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         waitForStart();

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.AUTONOMI.BLUE;
 
+import com.acmerobotics.roadrunner.ftc.Actions;
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -52,7 +53,28 @@ public class Blue_Dreapta extends LinearOpMode {
 
             telemetry.update();
         }
+
         waitForStart();
+
+        externalCamera.stopStreaming();
+        externalCamera.closeCameraDevice();
+
+        if(PropZone=="LEFT"){
+            Actions.runBlocking(
+                    //LeftLine
+            );
+        } else if(PropZone=="MIDDLE") {
+            Actions.runBlocking(
+                    //MiddleLine
+            );
+        } else if(PropZone=="RIGHT") {
+            Actions.runBlocking(
+                    //RightLine
+            );
+        }
+        while (opModeIsActive()) {
+            //telemetry
+        }
 
 
 
