@@ -252,43 +252,54 @@ public class Red_Dreapta extends LinearOpMode {
             }
         }
 
-        private void calculateSquarePosition() {
-            squareCenter.x = 0;
-            squareCenter.y = 0;
-
-            if (!contours.isEmpty()) {
-                double maxArea = -1;
-                int maxAreaIdx = -1;
-                for (int i = 0; i < contours.size(); i++) {
-                    double area = Imgproc.contourArea(contours.get(i));
-                    if (area > maxArea) {
-                        maxArea = area;
-                        maxAreaIdx = i;
-                    }
-
-                }
-
-                if (maxAreaIdx != -1) {
-                    // Calculate the center of the largest contour
-                    Moments moments = Imgproc.moments(contours.get(maxAreaIdx));
-                    squareCenter.x = moments.m10 / moments.m00;
-                    squareCenter.y = moments.m01 / moments.m00;
-                }
-            }
-        }
-//        private void correctArea(){
-//
+//        private void calculateSquarePosition() {
 //            squareCenter.x = 0;
 //            squareCenter.y = 0;
-//            if(!contours.isEmpty()){
+//
+//            if (!contours.isEmpty()) {
 //                double maxArea = -1;
-//                int maxAreaC = -1;
-//                for(int i=0;i<contours.size();i++){
-//                    double area = Imgproc.contourArea(contours.get(maxAreaC));
-//                    if()
+//                int maxAreaIdx = -1;
+//                for (int i = 0; i < contours.size(); i++) {
+//                    double area = Imgproc.contourArea(contours.get(i));
+//                    if (area > maxArea) {
+//                        maxArea = area;
+//                        maxAreaIdx = i;
+//                    }
+//
+//                }
+//
+//                if (maxAreaIdx != -1) {
+//                    // Calculate the center of the largest contour
+//                    Moments moments = Imgproc.moments(contours.get(maxAreaIdx));
+//                    squareCenter.x = moments.m10 / moments.m00;
+//                    squareCenter.y = moments.m01 / moments.m00;
 //                }
 //            }
-//
 //        }
+private void calculateSquarePosition() {
+    squareCenter.x = 0;
+    squareCenter.y = 0;
+
+    if (!contours.isEmpty()) {
+        double maxArea = -1;
+        int maxAreaIdx = -1;
+        double minContourArea =  19;
+
+        for (int i = 0; i < contours.size(); i++) {
+            double area = Imgproc.contourArea(contours.get(i));
+            if (area >= minContourArea && area > maxArea) {
+                maxArea = area;
+                maxAreaIdx = i;
+            }
+        }
+
+        if (maxAreaIdx != -1) {
+            Moments moments = Imgproc.moments(contours.get(maxAreaIdx));
+            squareCenter.x = moments.m10 / moments.m00;
+            squareCenter.y = moments.m01 / moments.m00;
+        }
+    }
+}
+
     }
 }
