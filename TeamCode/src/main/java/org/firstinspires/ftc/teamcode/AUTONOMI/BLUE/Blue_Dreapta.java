@@ -59,19 +59,19 @@ public class Blue_Dreapta extends LinearOpMode {
         externalCamera.stopStreaming();
         externalCamera.closeCameraDevice();
 
-        if(PropZone=="LEFT"){
-            Actions.runBlocking(
-                    //LeftLine
-            );
-        } else if(PropZone=="MIDDLE") {
-            Actions.runBlocking(
-                    //MiddleLine
-            );
-        } else if(PropZone=="RIGHT") {
-            Actions.runBlocking(
-                    //RightLine
-            );
-        }
+//        if(PropZone=="LEFT"){
+//            Actions.runBlocking(
+//                    //LeftLine
+//            );
+//        } else if(PropZone=="MIDDLE") {
+//            Actions.runBlocking(
+//                    //MiddleLine
+//            );
+//        } else if(PropZone=="RIGHT") {
+//            Actions.runBlocking(
+//                    //RightLine
+//            );
+//        }
         while (opModeIsActive()) {
             //telemetry
         }

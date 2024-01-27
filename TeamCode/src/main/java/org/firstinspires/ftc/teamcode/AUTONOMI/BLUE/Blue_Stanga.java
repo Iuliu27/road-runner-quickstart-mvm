@@ -166,10 +166,9 @@ public class Blue_Stanga extends LinearOpMode {
         public Scalar nonSelectedColor = new Scalar(255, 0, 0);
         public Scalar selectedColor = new Scalar(0, 0, 255);
 
-         public Scalar lowerBlue = new Scalar(106, 165, 55);
+         public Scalar lowerBlue = new Scalar(106, 100, 50);
          public Scalar upperBlue = new Scalar(230, 255, 255);
-        public Scalar lowerRed = new Scalar (0, 90, 7);
-        public Scalar upperRed = new Scalar (10, 255, 196);
+
         private int selectedRect = -1;
 
         public String isPointInsideRect() {
