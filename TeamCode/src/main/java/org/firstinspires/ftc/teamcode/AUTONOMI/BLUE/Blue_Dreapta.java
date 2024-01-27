@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.AUTONOMI.BLUE;
+/*package org.firstinspires.ftc.teamcode.AUTONOMI.BLUE;
 
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -237,3 +237,4 @@ public class Blue_Dreapta extends LinearOpMode {
 //        }
     }
 }
+*/

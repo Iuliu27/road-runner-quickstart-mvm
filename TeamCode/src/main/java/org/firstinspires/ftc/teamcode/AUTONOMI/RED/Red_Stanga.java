@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.AUTONOMI.RED;
+/*package org.firstinspires.ftc.teamcode.AUTONOMI.RED;
 
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -237,3 +237,4 @@ public class Red_Stanga extends LinearOpMode {
 //        }
     }
 }
+*/

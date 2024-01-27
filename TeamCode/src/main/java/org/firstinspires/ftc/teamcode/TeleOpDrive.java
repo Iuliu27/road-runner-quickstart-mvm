@@ -186,9 +186,9 @@ public class TeleOpDrive extends LinearOpMode {
                 case TELEOP:
                     currentVelPose = new PoseVelocity2d( // Slowdown by pressing right trigger, is gradual
                             new Vector2d(
-                                    -gamepad2.left_stick_y/(1+triggerSlowdown),
-                                    -gamepad2.left_stick_x/(1+triggerSlowdown)),
-                            -gamepad2.right_stick_x/(1+triggerSlowdown*3)
+                                    gamepad2.left_stick_y/(1+triggerSlowdown),
+                                    gamepad2.left_stick_x/(1+triggerSlowdown)),
+                            gamepad2.right_stick_x/(1+triggerSlowdown*3)
                     );
                     break;
                 case HEADING_LOCK:

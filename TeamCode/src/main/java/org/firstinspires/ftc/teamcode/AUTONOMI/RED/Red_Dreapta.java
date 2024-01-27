@@ -31,7 +31,7 @@ import java.util.List;
 
 @Autonomous(name = "Red_Dreapta",group="Iuliu")
 public class Red_Dreapta extends LinearOpMode {
-    Pose2d beginPose = new Pose2d(-34.5, -58, Math.toRadians(90));
+    Pose2d beginPose = new Pose2d(11, -58, Math.toRadians(90));
     HardwareMapping robot = new HardwareMapping();
     OpenCvCamera externalCamera;
     Servo intakeServoRight,intakeServoLeft;
@@ -67,30 +67,30 @@ public class Red_Dreapta extends LinearOpMode {
 
         Action LeftLine= drive.actionBuilder(beginPose) //stanga
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-41,-36,Math.toRadians(120)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(5,-32,Math.toRadians(120)),Math.toRadians(90))
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(24,-58,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
-                .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50,-58,Math.toRadians(90)),Math.toRadians(0))
                 .build();
 
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
-                .splineToLinearHeading(new Pose2d(-35,-29,Math.toRadians(90)),Math.toRadians(90))
-                .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(-35,-42,Math.toRadians(90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(11,-29,Math.toRadians(90)),Math.toRadians(90))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(11,-58,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
-                .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50,-58,Math.toRadians(90)),Math.toRadians(0))
                 .build();
 
         Action RightLine=drive.actionBuilder(beginPose) //dreapta
-                .splineTo(new Vector2d(-27,-32),Math.toRadians(60))
-                .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(19,-34,Math.toRadians(60)),Math.toRadians(60))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(11,-58,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
-                .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-65,-58,Math.toRadians(90)),Math.toRadians(180))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50,-58,Math.toRadians(90)),Math.toRadians(0))
                 .build();
 
         waitForStart();
