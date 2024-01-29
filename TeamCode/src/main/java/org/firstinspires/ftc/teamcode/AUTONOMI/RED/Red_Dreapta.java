@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.AUTONOMI.RED;
 
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -33,6 +36,8 @@ import java.util.List;
 public class Red_Dreapta extends LinearOpMode {
     Pose2d beginPose = new Pose2d(11, -58, Math.toRadians(90));
     HardwareMapping robot = new HardwareMapping();
+    HardwareMapping.Intake intake = robot.new Intake();
+    HardwareMapping.Outtake outtake = robot.new Outtake();
     OpenCvCamera externalCamera;
     Servo intakeServoRight,intakeServoLeft;
     nume pipeline;
@@ -93,23 +98,118 @@ public class Red_Dreapta extends LinearOpMode {
                 .splineToLinearHeading(new Pose2d(50,-58,Math.toRadians(90)),Math.toRadians(0))
                 .build();
 
+        Action MiddleLineTryhard = drive.actionBuilder(beginPose) //mijloc
+                .splineToLinearHeading(new Pose2d(11,-29,Math.toRadians(90)),Math.toRadians(90))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(11,-58,Math.toRadians(90)),Math.toRadians(-90))
+                .setTangent(Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(42,-31,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(45,-31,Math.toRadians(0)),Math.toRadians(90))
+                .build();
+
+        Action RightLineTryhard = drive.actionBuilder(beginPose) //dreapta
+                .splineToLinearHeading(new Pose2d(19,-34,Math.toRadians(60)),Math.toRadians(60))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(11,-58,Math.toRadians(90)),Math.toRadians(-90))
+                .setTangent(Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(42,-38,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(45,-38,Math.toRadians(0)),Math.toRadians(90))
+                .build();
+
+        Action LeftLineTryhard = drive.actionBuilder(beginPose) //left
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(4,-32,Math.toRadians(120)),Math.toRadians(90))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(24,-58,Math.toRadians(90)),Math.toRadians(-90))
+                .setTangent(Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(42,-24,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(45,-24,Math.toRadians(0)),Math.toRadians(90))
+                .build();
+
+
+        Action Parking = drive.actionBuilder(beginPose)
+                .waitSeconds(1)
+                //.setTangent(Math.toRadians(-90))
+                //.splineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)),Math.toRadians(-90))
+                //.lineToY(-35)
+                .build();
+
         waitForStart();
 
         externalCamera.stopStreaming();
         externalCamera.closeCameraDevice();
 
         if(PropZone=="LEFT"){
-            Actions.runBlocking(
-                    LeftLine
-            );
+            Actions.runBlocking(new SequentialAction(
+                    //MiddleLine
+                    //MiddleLineTryhard,
+                    LeftLineTryhard,
+                    outtake.runToPosition("autonom"),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.pivot(DefVal.pivot60),
+                            outtake.roll(DefVal.roll60)
+                    ),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.upperHook("open"),
+                            outtake.bottomHook("open")
+                    ),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.pivot(DefVal.pivot0),
+                            outtake.roll(DefVal.roll0)
+                    ),
+                    new SleepAction(1),
+                    outtake.runToPosition("ground")
+            ));
         } else if(PropZone=="MIDDLE") {
-            Actions.runBlocking(
-                    MiddleLine
-            );
+            Actions.runBlocking(new SequentialAction(
+                    //MiddleLine
+                    MiddleLineTryhard,
+                    outtake.runToPosition("autonom"),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.pivot(DefVal.pivot60),
+                            outtake.roll(DefVal.roll60)
+                    ),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.upperHook("open"),
+                            outtake.bottomHook("open")
+                    ),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.pivot(DefVal.pivot0),
+                            outtake.roll(DefVal.roll0)
+                    ),
+                    new SleepAction(1),
+                    outtake.runToPosition("ground")
+            ));
         } else if(PropZone=="RIGHT") {
-            Actions.runBlocking(
-                    RightLine
-            );
+            Actions.runBlocking(new SequentialAction(
+                    //MiddleLine
+                    //MiddleLineTryhard,
+                    RightLineTryhard,
+                    outtake.runToPosition("autonom"),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.pivot(DefVal.pivot60),
+                            outtake.roll(DefVal.roll60)
+                    ),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.upperHook("open"),
+                            outtake.bottomHook("open")
+                    ),
+                    new SleepAction(2),
+                    new ParallelAction(
+                            outtake.pivot(DefVal.pivot0),
+                            outtake.roll(DefVal.roll0)
+                    ),
+                    new SleepAction(1),
+                    outtake.runToPosition("ground")
+            ));
         }
         while (opModeIsActive()) {
             //telemetry

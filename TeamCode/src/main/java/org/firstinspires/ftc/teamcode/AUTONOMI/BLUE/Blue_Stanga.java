@@ -41,7 +41,7 @@ public class Blue_Stanga extends LinearOpMode {
     Servo intakeServoRight,intakeServoLeft;
     nume pipeline;
     String PropZone ="RIGHT";
-
+    //CIOARAAAAAAAA
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
@@ -72,28 +72,31 @@ public class Blue_Stanga extends LinearOpMode {
                 .setReversed(false)
                 .splineToLinearHeading(new Pose2d(-41,-36,Math.toRadians(120)),Math.toRadians(90))
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-90))
+                //robotul este in pozitia principala
+                .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
-                .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-67,-40,Math.toRadians(180)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(180)),Math.toRadians(90))
+                 //parcare
+                 //.setTangent(Math.toRadians(180))
+                 //.splineToLinearHeading(new Pose2d(-80,-54,Math.toRadians(90)),Math.toRadians(180))
                 .build();
-
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
                 .splineToLinearHeading(new Pose2d(-34.5,-28,Math.toRadians(90)),Math.toRadians(90))
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
                 .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-80,-54,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action RightLine=drive.actionBuilder(beginPose) //dreapta
-                .splineTo(new Vector2d(-27,-32),Math.toRadians(60))
-                .setTangent(Math.toRadians(-270))
-                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-270))
+                .splineToLinearHeading(new Pose2d(-26,-32,Math.toRadians(60)),Math.toRadians(60))
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(90)),Math.toRadians(270))
                 .waitSeconds(0.1)
                 .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-80,-54,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         waitForStart();
@@ -108,6 +111,7 @@ public class Blue_Stanga extends LinearOpMode {
         } else if(PropZone=="MIDDLE") {
             Actions.runBlocking(
                     MiddleLine
+
             );
         } else if(PropZone=="RIGHT") {
             Actions.runBlocking(

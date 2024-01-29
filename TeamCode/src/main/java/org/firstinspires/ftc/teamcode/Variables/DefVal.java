@@ -13,8 +13,8 @@ public class DefVal {
     public static double latchOpen = 0;
     public static double latchClosed = 0.5;
 
-    public static double upperHookOpen = 0.95;
-    public static double upperHookClosed = 0.8;
+    public static double upperHookOpen = 1;
+    public static double upperHookClosed = 0.75;
     public static double bottomHookClosed = 0.8;
     public static double bottomHookOpen = 0.9;
 
@@ -23,6 +23,7 @@ public class DefVal {
     public static double LiftMIDDLE = 35;
     public static double LiftLOW = 20;
     public static double LiftGROUND = 0;
+    public static double LiftAutonom=10;
 
     public static double hangHang = 10;
     public static double hangup = 15;
@@ -31,10 +32,10 @@ public class DefVal {
     public static double intakeRollerPower = 0.5;
 
     public static double iLevel1 = 0.08;
-    public static double iLevel2 = 0.08;
+    public static double iLevel2 = 0.095;
     public static double iLevel3 = 0.13;
-    public static double iLevel4 = 0.145;
-    public static double iLevel5 = 0.16;
+    public static double iLevel4 = 0.16;
+    public static double iLevel5 = 0.18;
 
     public static double iLevel6 = 0.35;
 

@@ -490,6 +490,14 @@ public class HardwareMapping {
                             slideMotorRight.setPower(1);
                             slideMotorLeft.setPower(1);
                             break;
+                        case "autonom":
+                            ticks = (int)(DefVal.LiftAutonom*TICKS_PER_CM_Z);
+                            slideMotorLeft.setTargetPosition(ticks);
+                            slideMotorRight.setTargetPosition(ticks);
+                            slideMotorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                            slideMotorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                            slideMotorRight.setPower(1);
+                            slideMotorLeft.setPower(1);
                     }
                     init = false;
                     return false;
