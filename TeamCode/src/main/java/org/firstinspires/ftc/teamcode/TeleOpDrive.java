@@ -51,7 +51,6 @@ public class TeleOpDrive extends LinearOpMode {
     HardwareMapping.Intake intake = robot.new Intake();
     HardwareMapping.Outtake outtake = robot.new Outtake();
     public DcMotorEx leftFront, leftBack, rightBack, rightFront;
-    public Servo  outtakeClawUpper;
     public DcMotorEx intakeMotor;
     public CRServo intakeServoRoller;
     enum mode {
@@ -142,7 +141,6 @@ public class TeleOpDrive extends LinearOpMode {
         rightFront=hardwareMap.get(DcMotorEx.class,"rightFront");
         leftBack=hardwareMap.get(DcMotorEx.class,"leftBack");
         rightBack=hardwareMap.get(DcMotorEx.class,"rightBack");
-        outtakeClawUpper=hardwareMap.get(Servo.class,"outtakeClawUpper");
 
         // Init motors/servos/etc
         Actions.runBlocking(new ParallelAction(
@@ -151,8 +149,8 @@ public class TeleOpDrive extends LinearOpMode {
                 intake.angle(6),
                 //outtake.yaw(DefVal.yaw0),
                 outtake.roll(DefVal.roll0),
-                outtake.pivot(DefVal.pivot0)
-                //outtake.latch("closed")
+                outtake.pivot(DefVal.pivot0),
+                outtake.latch("closed")
         ));
         // robot.checkColorRange("upper");
         //robot.checkColorRange("bottom");
@@ -174,8 +172,6 @@ public class TeleOpDrive extends LinearOpMode {
 
         //Funky time/sugiuc
         waitForStart();
-        //outtake.upperHook("open");
-        //outtakeClawUpper.setPosition(DefVal.upperHookOpen);
         while(opModeIsActive() && !isStopRequested()){
             Pose2d currentPose = drive.pose;                            // Memory management, don't call drive pose too much
             //double pitch = drive.imu.getRobotYawPitchRollAngles().getPitch(AngleUnit.DEGREES);
@@ -192,7 +188,7 @@ public class TeleOpDrive extends LinearOpMode {
                             new Vector2d(
                                     gamepad2.left_stick_y/(1+triggerSlowdown),
                                     gamepad2.left_stick_x/(1+triggerSlowdown)),
-                            -gamepad2.right_stick_x/(1+triggerSlowdown*3)
+                            gamepad2.right_stick_x/(1+triggerSlowdown*3)
                     );
                     break;
                 case HEADING_LOCK:
@@ -215,10 +211,7 @@ public class TeleOpDrive extends LinearOpMode {
             //Slide controls
             //Driver 1 and 2
 
-            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_UP)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))
+            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_LEFT))
                 /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.DPAD_LEFT))*/
                 runningActions.add(new SequentialAction(
                         new ParallelAction(
@@ -232,10 +225,7 @@ public class TeleOpDrive extends LinearOpMode {
                         new SleepAction(1),
                         outtake.runToPosition("ground")
                 ));
-            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_UP)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))
+            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_UP))
                 /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.DPAD_UP))*/ runningActions.add(new SequentialAction(
                     outtake.runToPosition("high"),
                     new SleepAction(0.5),
@@ -246,10 +236,7 @@ public class TeleOpDrive extends LinearOpMode {
                             outtake.latch("open")
                     )
             ));
-            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_UP))
+            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
                 /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))*/ runningActions.add(new SequentialAction(
                     outtake.runToPosition("low"),
                     new SleepAction(0.5),
@@ -260,10 +247,7 @@ public class TeleOpDrive extends LinearOpMode {
                             outtake.latch("open")
                     )
             ));
-            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)
-                    && !robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_UP))
+            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))
                 /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))*/ runningActions.add(new SequentialAction(
                     outtake.runToPosition("middle"),
                     new SleepAction(0.5),

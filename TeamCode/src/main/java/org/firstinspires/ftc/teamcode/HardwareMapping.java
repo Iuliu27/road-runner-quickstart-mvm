@@ -394,7 +394,7 @@ public class HardwareMapping {
                     return false;
                 }
             };}
-        public Action latch(String state){
+        /*public Action latch(String state){
             return new Action() {
                 @Override
                 public boolean run(@NonNull TelemetryPacket telemetryPacket) {
@@ -423,7 +423,7 @@ public class HardwareMapping {
                     }
                     return false;
                 }
-            };}
+            };}*/
         public Action bottomHook(String state){
             return new Action() {
                 @Override

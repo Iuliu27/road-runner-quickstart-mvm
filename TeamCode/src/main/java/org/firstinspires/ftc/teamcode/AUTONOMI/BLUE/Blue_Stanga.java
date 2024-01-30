@@ -75,12 +75,18 @@ public class Blue_Stanga extends LinearOpMode {
                 //robotul este in pozitia principala
                 .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
+                .setTangent(Math.toRadians(90))
                 .splineToLinearHeading(new Pose2d(-67,-40,Math.toRadians(180)),Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(180)),Math.toRadians(90))
-                 //parcare
-                 //.setTangent(Math.toRadians(180))
-                 //.splineToLinearHeading(new Pose2d(-80,-54,Math.toRadians(90)),Math.toRadians(180))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(36,-58,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(54,-30,Math.toRadians(180)),Math.toRadians(0)) //ia pixel
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(36,-58,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-67,-40,Math.toRadians(180)),Math.toRadians(180))
                 .build();
+
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
                 .splineToLinearHeading(new Pose2d(-34.5,-28,Math.toRadians(90)),Math.toRadians(90))
                 .setTangent(Math.toRadians(-90))

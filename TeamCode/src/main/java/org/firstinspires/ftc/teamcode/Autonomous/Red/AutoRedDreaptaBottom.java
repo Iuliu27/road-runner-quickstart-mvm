@@ -108,7 +108,7 @@ public class AutoRedDreaptaBottom extends LinearOpMode {
                 .afterDisp(0.1, new SequentialAction(
                         new ParallelAction(
                                 //outtake.yaw(0),
-                                outtake.latch("closed"),
+                                //outtake.latch("closed"),
                                 outtake.bottomHook("open"),
                                 outtake.upperHook("open"),
                                 //intake.sensingOff(),
