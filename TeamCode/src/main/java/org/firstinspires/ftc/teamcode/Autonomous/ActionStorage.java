@@ -8,7 +8,7 @@ import com.acmerobotics.roadrunner.SleepAction;
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.Variables.DefVal;
 
-public class ActionStorage {
+/*public class ActionStorage {
     HardwareMapping.Intake intake;
     HardwareMapping.Outtake outtake;
     public ActionStorage(HardwareMapping.Intake intake, HardwareMapping.Outtake outtake){
@@ -51,3 +51,4 @@ public class ActionStorage {
                     outtake.runToPosition("ground")
             );
 }
+*/

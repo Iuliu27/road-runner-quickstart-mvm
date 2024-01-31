@@ -7,7 +7,7 @@ public class DefVal {
     //in ms
     public static int endgameTime = 50000;
 
-    public static double planeOff = 0;
+    public static double planeOff = 0.5;
     public static double planeOn = 1;
 
     public static double latchOpen = 0;
@@ -31,7 +31,7 @@ public class DefVal {
     public static double intakeMotorPower = 0.65;
     public static double intakeRollerPower = 0.5;
 
-    public static double iLevel1 = 0.08;
+    public static double iLevel1 = 0.01;
     public static double iLevel2 = 0.095;
     public static double iLevel3 = 0.13;
     public static double iLevel4 = 0.16;

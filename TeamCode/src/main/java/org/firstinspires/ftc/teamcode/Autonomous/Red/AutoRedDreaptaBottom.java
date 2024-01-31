@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Autonomous.ActionStorage;
+
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.PoseTransfer;
@@ -20,7 +20,6 @@ import org.firstinspires.ftc.teamcode.Variables.DefVal;
 @Autonomous(group = "Auto Red", name = "AutoDreaptaRedBottom")
 @Disabled
 public class AutoRedDreaptaBottom extends LinearOpMode {
-    /* Init whatever you need */
     HardwareMapping robot = new HardwareMapping();
     HardwareMapping.Intake intake = robot.new Intake();
     HardwareMapping.Outtake outtake = robot.new Outtake();
@@ -57,7 +56,7 @@ public class AutoRedDreaptaBottom extends LinearOpMode {
     String elementPosition = "middle";
     traj currentTraj = traj.TRAJ1_StartToLine;
 
-    ActionStorage actionStorage = new ActionStorage(intake, outtake);
+    //ActionStorage actionStorage = new ActionStorage(intake, outtake);
 
     public void runOpMode() throws InterruptedException{
         MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(-34.5 + 2*24 , -58 , Math.toRadians(90)));
@@ -84,13 +83,13 @@ public class AutoRedDreaptaBottom extends LinearOpMode {
                 .splineToLinearHeading(new Pose2d(25, -58.5, Math.toRadians(0)), Math.toRadians(0))
                 .afterDisp(0.1, intake.reverse())
                 .splineToLinearHeading(rightBackboardPose, Math.toRadians(0))
-                .afterDisp(5, actionStorage.pixelToMiddle)
+                // .afterDisp(5, actionStorage.pixelToMiddle)
                 .build();
 
         Action TRAJ5_RightBackboardToStack = drive.actionBuilder(rightBackboardPose)
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(25, -58.5, Math.toRadians(0)), Math.toRadians(180))
-                .afterDisp(2, actionStorage.pixelToGround)
+               // .afterDisp(2, actionStorage.pixelToGround)
                 .splineToLinearHeading(new Pose2d(-10, -58.5, Math.toRadians(0)), Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-34, -58.5, Math.toRadians(0)), Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-57, -36, Math.toRadians(0)), Math.toRadians(110))
@@ -134,7 +133,7 @@ public class AutoRedDreaptaBottom extends LinearOpMode {
                 TRAJ2_LineToStack = drive.actionBuilder(nextPose)
                         .setReversed(true)
                         .splineToLinearHeading(rightBackboardPose, Math.toRadians(0))
-                        .afterDisp(4, actionStorage.pixelToLow)
+                        //.afterDisp(4, actionStorage.pixelToLow)
                         .build();
                 nextNextPose=rightBackboardPose;
                 break;
@@ -144,7 +143,7 @@ public class AutoRedDreaptaBottom extends LinearOpMode {
                 TRAJ2_LineToStack = drive.actionBuilder(nextPose)
                         .setReversed(true)
                         .splineToLinearHeading(middleBackboardPose, Math.toRadians(0))
-                        .afterDisp(4, actionStorage.pixelToLow)
+                        //.afterDisp(4, actionStorage.pixelToLow)
                         .build();
                 nextNextPose=middleBackboardPose;
                 break;
@@ -154,7 +153,7 @@ public class AutoRedDreaptaBottom extends LinearOpMode {
                 TRAJ2_LineToStack = drive.actionBuilder(nextPose)
                         .setReversed(true)
                         .splineToLinearHeading(leftBackboardPose, Math.toRadians(0))
-                        .afterDisp(4, actionStorage.pixelToLow)
+                        //.afterDisp(4, actionStorage.pixelToLow)
                         .build();
                 nextNextPose=leftBackboardPose;
                 break;
@@ -162,7 +161,7 @@ public class AutoRedDreaptaBottom extends LinearOpMode {
         Action TRAJ3_BackboardToStack = drive.actionBuilder(nextNextPose)
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(25, -58.5, Math.toRadians(0)), Math.toRadians(180))
-                .afterDisp(2, actionStorage.pixelToGround)
+                //.afterDisp(2, actionStorage.pixelToGround)
                 .splineToLinearHeading(new Pose2d(-10, -58.5, Math.toRadians(0)), Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-34, -58.5, Math.toRadians(0)), Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-57, -36, Math.toRadians(0)), Math.toRadians(110))

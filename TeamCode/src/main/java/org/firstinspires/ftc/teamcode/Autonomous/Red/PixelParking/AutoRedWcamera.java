@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Autonomous.ActionStorage;
+
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.cameraStuff.cameraHW;
@@ -24,7 +24,7 @@ public class AutoRedWcamera extends LinearOpMode {
     cameraHW camera = new cameraHW();
     Pose2d StartPose = new Pose2d(11, -66 , Math.toRadians(90));
     String PropZone="Middle";
-    ActionStorage actiuni = new ActionStorage(intake, outtake);
+    //ActionStorage actiuni = new ActionStorage(intake, outtake);
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -38,7 +38,7 @@ public class AutoRedWcamera extends LinearOpMode {
                 .afterDisp(2, intake.angle(6))//sau 1
                 .splineToLinearHeading(new Pose2d(49, -30, Math.toRadians(0)), Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(49, -42, Math.toRadians(0)), Math.toRadians(0))
-                .afterDisp(4, actiuni.pixelToMiddle)
+               // .afterDisp(4, actiuni.pixelToMiddle)
                 .build();
         
         Action TeamPropZoneMiddle = drive.actionBuilder(StartPose)

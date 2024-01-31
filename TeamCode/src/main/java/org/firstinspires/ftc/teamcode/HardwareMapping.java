@@ -94,7 +94,7 @@ public class HardwareMapping {
         intakeServoRight.setDirection(Servo.Direction.REVERSE);
         //outtakeClawBottom.setDirection(Servo.Direction.REVERSE);
         //outtakeClawUpper.setDirection(Servo.Direction.REVERSE);
-
+        planeLauncherServo.setDirection(Servo.Direction.REVERSE);
 
         /* Motors */
         intakeMotor = hwMap.get(DcMotorEx.class, "intakeMotor");
@@ -408,7 +408,7 @@ public class HardwareMapping {
                     }
                     return false;
                 }
-            };}
+            };}*/
         public Action upperHook(String state){
             return new Action() {
                 @Override
@@ -423,7 +423,7 @@ public class HardwareMapping {
                     }
                     return false;
                 }
-            };}*/
+            };}
         public Action bottomHook(String state){
             return new Action() {
                 @Override

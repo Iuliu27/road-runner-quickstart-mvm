@@ -70,21 +70,37 @@ public class Blue_Stanga extends LinearOpMode {
 
         Action LeftLine= drive.actionBuilder(beginPose) //stanga
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-41,-36,Math.toRadians(120)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-40,-35,Math.toRadians(120)),Math.toRadians(90))
                 .setTangent(Math.toRadians(-90))
                 //robotul este in pozitia principala
                 .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(-67,-40,Math.toRadians(180)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-69,-33,Math.toRadians(180)),Math.toRadians(90))
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(180)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(36,-58,Math.toRadians(180)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(54,-30,Math.toRadians(180)),Math.toRadians(0)) //ia pixel
+                .splineToLinearHeading(new Pose2d(-34.5,-54.5,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(12,-54.5,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(39,-29,Math.toRadians(180)),Math.toRadians(0))
+                //.turn(Math.toRadians(8))
+                //merge la backboard
+                .waitSeconds(0.1)
                 .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(36,-58,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-67,-40,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(178)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-53,Math.toRadians(178)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-53,Math.toRadians(178)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-69,-33,Math.toRadians(180)),Math.toRadians(180))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-34.5,-54,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(12,-54,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(39,-29,Math.toRadians(180)),Math.toRadians(0))
+                .waitSeconds(0.1)
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(178)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-52,Math.toRadians(178)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-52,Math.toRadians(178)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-69,-33,Math.toRadians(180)),Math.toRadians(180))
                 .build();
 
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc

@@ -31,7 +31,7 @@ import java.util.List;
 
 @Autonomous(name = "Blue_Dreapta",group="Iuliu")
 public class Blue_Dreapta extends LinearOpMode {
-    Pose2d beginPose = new Pose2d(-34.5, -58, Math.toRadians(90));
+    Pose2d beginPose = new Pose2d(-36.82, 61.62, Math.toRadians(-87.58));
     HardwareMapping robot = new HardwareMapping();
     OpenCvCamera externalCamera;
     Servo intakeServoRight,intakeServoLeft;
@@ -66,32 +66,91 @@ public class Blue_Dreapta extends LinearOpMode {
         }
         Action LeftLine= drive.actionBuilder(beginPose) //stanga
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-42,-34,Math.toRadians(120)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-26,30,Math.toRadians(270)),Math.toRadians(270))
+                .setTangent(Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-30,40,Math.toRadians(270)),Math.toRadians(270))
+                .turn(Math.toRadians(100))
+                //stack
+                .setTangent(Math.toRadians(-180))
+                //.setReversed(false)
+                .splineToLinearHeading(new Pose2d(-60.04,36,Math.toRadians(0)),Math.toRadians(-180))
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-34.5,-40,Math.toRadians(90)),Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-60, 12, Math.toRadians(0)), Math.toRadians(-90))
+                //se duce la backboard
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+                //.strafeLeft(25)
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-60,12,Math.toRadians(0)),Math.toRadians(180))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+
                 .waitSeconds(0.1)
                 //.setTangent(Math.toRadians(180))
                 //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
-                .splineToLinearHeading(new Pose2d(-34.5,-30,Math.toRadians(90)),Math.toRadians(90))
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-34.5,30,Math.toRadians(270)),Math.toRadians(270))
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-34.5,-40,Math.toRadians(90)),Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-34.5,40,Math.toRadians(270)),Math.toRadians(-270))
+                .waitSeconds(0.1)
+                //.setTangent(Math.toRadians(180))
+                //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
+                .turn(Math.toRadians(100))
+                //stack
+                .setTangent(Math.toRadians(-180))
+                //.setReversed(false)
+                .splineToLinearHeading(new Pose2d(-60.04,36,Math.toRadians(0)),Math.toRadians(-180))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-58.28, 12, Math.toRadians(0)), Math.toRadians(-90))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+                //.strafeLeft(25)
+                .setTangent(Math.toRadians(-140))
+                .splineToLinearHeading(new Pose2d(-60.04,12,Math.toRadians(0)),Math.toRadians(-180))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+
                 .waitSeconds(0.1)
                 //.setTangent(Math.toRadians(180))
                 //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action RightLine=drive.actionBuilder(beginPose) //dreapta
-                .splineToLinearHeading(new Pose2d(-27,-32,Math.toRadians(60)),Math.toRadians(60))
-                .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-40,Math.toRadians(90)),Math.toRadians(270))
-                //.waitSeconds(0.1)
-                //.setTangent(Math.toRadians(180))
-                //.splineToLinearHeading(new Pose2d(-80,-56,Math.toRadians(90)),Math.toRadians(180))
-                .build();
+                .setReversed(true)
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-46.70, 30.16, Math.toRadians(250)), Math.toRadians(-90))
+                .setTangent(90)
+                .splineToLinearHeading(new Pose2d(-38.28, 45.7, Math.toRadians(250)), Math.toRadians(90))
+                //.setTangent(Math.toRadians(90))
+                .turn(Math.toRadians(100))
+                //stack
+                .setTangent(Math.toRadians(-180))
+                //.setReversed(false)
+                .splineToLinearHeading(new Pose2d(-60.04,36,Math.toRadians(0)),Math.toRadians(-180))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-58.28, 12, Math.toRadians(0)), Math.toRadians(-90))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+                //.strafeLeft(25)
+                .setTangent(Math.toRadians(-140))
+                .splineToLinearHeading(new Pose2d(-60.04,12,Math.toRadians(0)),Math.toRadians(-180))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
 
+                .waitSeconds(0.1)
+                //.setTangent(Math.toRadians(180))
+                //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
+                .build();
         waitForStart();
 
         externalCamera.stopStreaming();

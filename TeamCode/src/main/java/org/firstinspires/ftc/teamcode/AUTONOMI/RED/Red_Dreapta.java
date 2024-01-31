@@ -152,7 +152,7 @@ public class Red_Dreapta extends LinearOpMode {
                     ),
                     new SleepAction(2),
                     new ParallelAction(
-                            outtake.upperHook("open"),
+                            //outtake.upperHook("open"),
                             outtake.bottomHook("open")
                     ),
                     new SleepAction(2),
@@ -175,7 +175,7 @@ public class Red_Dreapta extends LinearOpMode {
                     ),
                     new SleepAction(2),
                     new ParallelAction(
-                            outtake.upperHook("open"),
+                           // outtake.upperHook("open"),
                             outtake.bottomHook("open")
                     ),
                     new SleepAction(2),
@@ -199,7 +199,7 @@ public class Red_Dreapta extends LinearOpMode {
                     ),
                     new SleepAction(2),
                     new ParallelAction(
-                            outtake.upperHook("open"),
+                            //outtake.upperHook("open"),
                             outtake.bottomHook("open")
                     ),
                     new SleepAction(2),

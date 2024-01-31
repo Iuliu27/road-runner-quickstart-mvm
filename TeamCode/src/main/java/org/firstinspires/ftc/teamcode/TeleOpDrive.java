@@ -149,8 +149,8 @@ public class TeleOpDrive extends LinearOpMode {
                 intake.angle(6),
                 //outtake.yaw(DefVal.yaw0),
                 outtake.roll(DefVal.roll0),
-                outtake.pivot(DefVal.pivot0),
-                outtake.latch("closed")
+                outtake.pivot(DefVal.pivot0)
+                //outtake.latch("closed")
         ));
         // robot.checkColorRange("upper");
         //robot.checkColorRange("bottom");
@@ -216,7 +216,7 @@ public class TeleOpDrive extends LinearOpMode {
                 runningActions.add(new SequentialAction(
                         new ParallelAction(
                                 //outtake.yaw(DefVal.yaw0),
-                                outtake.latch("closed")
+                                //outtake.latch("closed")
                         ),
                         new ParallelAction(
                                 outtake.pivot(DefVal.pivot0),
@@ -231,9 +231,9 @@ public class TeleOpDrive extends LinearOpMode {
                     new SleepAction(0.5),
                     new ParallelAction(
                             outtake.pivot(DefVal.pivot60),
-                            outtake.roll(DefVal.roll60),
+                            outtake.roll(DefVal.roll60)
                             //outtake.yaw(DefVal.yaw90),
-                            outtake.latch("open")
+                            //outtake.latch("open")
                     )
             ));
             if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_DOWN))
@@ -242,9 +242,9 @@ public class TeleOpDrive extends LinearOpMode {
                     new SleepAction(0.5),
                     new ParallelAction(
                             outtake.pivot(DefVal.pivot60),
-                            outtake.roll(DefVal.roll60),
+                            outtake.roll(DefVal.roll60)
                             //outtake.yaw(DefVal.yaw90),
-                            outtake.latch("open")
+                            //outtake.latch("open")
                     )
             ));
             if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT))
@@ -253,9 +253,9 @@ public class TeleOpDrive extends LinearOpMode {
                     new SleepAction(0.5),
                     new ParallelAction(
                             outtake.pivot(DefVal.pivot60),
-                            outtake.roll(DefVal.roll60),
+                            outtake.roll(DefVal.roll60)
                             //outtake.yaw(DefVal.yaw90),
-                            outtake.latch("open")
+                            //outtake.latch("open")
                     )
             ));
 
