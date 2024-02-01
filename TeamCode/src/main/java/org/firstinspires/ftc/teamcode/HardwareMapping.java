@@ -525,7 +525,11 @@ public class HardwareMapping {
          * Reverses the intake for 1.5s to filter out a possible third pixel.
          */
         public SequentialAction reverse(){
-            return new SequentialAction(reverseBase(), new SleepAction(1.5), stop());
+            return new SequentialAction(reverseBase(), new SleepAction(0.75), stop());
+        }
+
+        public SequentialAction reversePixel(){
+            return new SequentialAction(reverseBase(), new SleepAction(1.25), stop());
         }
 
         private Action reverseBase(){

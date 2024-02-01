@@ -1,8 +1,13 @@
 package org.firstinspires.ftc.teamcode.AUTONOMI.BLUE;
 
+import static org.firstinspires.ftc.teamcode.PoseTransfer.currentPose;
+
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.Line;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -36,7 +41,10 @@ import kotlin.math.UMathKt;
 @Autonomous(name = "Blue_stanga",group="Iuliu")
 public class Blue_Stanga extends LinearOpMode {
     Pose2d beginPose = new Pose2d(-34.5, -58, Math.toRadians(90));
+    Pose2d cPose;
     HardwareMapping robot = new HardwareMapping();
+    HardwareMapping.Intake intake = robot.new Intake();
+    HardwareMapping.Outtake outtake = robot.new Outtake();
     OpenCvCamera externalCamera;
     Servo intakeServoRight,intakeServoLeft;
     nume pipeline;
@@ -67,16 +75,109 @@ public class Blue_Stanga extends LinearOpMode {
 
             telemetry.update();
         }
-
-        Action LeftLine= drive.actionBuilder(beginPose) //stanga
+        Action LineBack=drive.actionBuilder(beginPose)
                 .setReversed(false)
                 .splineToLinearHeading(new Pose2d(-40,-35,Math.toRadians(120)),Math.toRadians(90))
                 .setTangent(Math.toRadians(-90))
                 //robotul este in pozitia principala
                 .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(90)),Math.toRadians(-90))
                 .waitSeconds(0.1)
+                .build();
+
+        cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
+
+        Action BeginToBackboard=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-69.5,-34.5,Math.toRadians(180)),Math.toRadians(90))
+                .afterDisp(1,new SequentialAction(
+
+                        new ParallelAction(
+                                outtake.pivot(DefVal.pivot60),
+                                outtake.roll(DefVal.roll60),
+                                outtake.runToPosition("autonom")
+                        ),
+                        new SleepAction(1.5),
+                        new ParallelAction(
+                                outtake.upperHook("open"),
+                                outtake.bottomHook("open")
+                        ),
+                        new SleepAction(1),
+                        new ParallelAction(
+                                outtake.pivot(DefVal.pivot0),
+                                outtake.roll(DefVal.roll0)
+                        ),
+                        new SleepAction(1),
+                        outtake.runToPosition("ground")
+                ))
+                .build();
+
+        cPose=new Pose2d(-69,-33,Math.toRadians(180));
+
+        Action ToStack=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-34.5,-54.1,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(12,-54.1,Math.toRadians(180)),Math.toRadians(0))
+                //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(41.3,-28,Math.toRadians(180)),Math.toRadians(0))
+                .afterDisp(0.1,new SequentialAction(
+                        intake.angle(5),
+                        intake.reversePixel(),
+                        new SleepAction(2),
+                        new ParallelAction(
+                                outtake.bottomHook("closed"),outtake.upperHook("closed")
+                        ),
+                        intake.stop()
+                ))
+                .build();
+
+        cPose=new Pose2d(39,-29,Math.toRadians(180));
+
+        Action ToBackboard=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-56.5,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-54.5,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-69.5,-34.5,Math.toRadians(180)),Math.toRadians(180))
+                .afterDisp(1,new SequentialAction(
+
+                        new ParallelAction(
+                                outtake.pivot(DefVal.pivot60),
+                                outtake.roll(DefVal.roll60),
+                                outtake.runToPosition("low")
+                        ),
+                        new SleepAction(1.5),
+                        new ParallelAction(
+                                outtake.upperHook("open"),
+                                outtake.bottomHook("open")
+                        ),
+                        new SleepAction(1),
+                        new ParallelAction(
+                                outtake.pivot(DefVal.pivot0),
+                                outtake.roll(DefVal.roll0)
+                        ),
+                        new SleepAction(1),
+                        outtake.runToPosition("ground")
+                ))
+                .build();
+
+        cPose=new Pose2d(-69,-33,Math.toRadians(180));
+
+        Action Parking=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-69,-58,Math.toRadians(180)),Math.toRadians(-90))
+                .build();
+
+        Action LeftLineFull= drive.actionBuilder(beginPose) //stanga
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-40,-35,Math.toRadians(120)),Math.toRadians(90))
+                .setTangent(Math.toRadians(-90))
+                //robotul este in pozitia principala
+                .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(90)),Math.toRadians(-90))
+                .waitSeconds(0.1)
+
                 .setTangent(Math.toRadians(90))
                 .splineToLinearHeading(new Pose2d(-69,-33,Math.toRadians(180)),Math.toRadians(90))
+
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(-34.5,-54.5,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(12,-54.5,Math.toRadians(180)),Math.toRadians(0))
@@ -85,17 +186,20 @@ public class Blue_Stanga extends LinearOpMode {
                 //.turn(Math.toRadians(8))
                 //merge la backboard
                 .waitSeconds(0.1)
+
                 .setTangent(Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(178)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(12,-53,Math.toRadians(178)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-34.5,-53,Math.toRadians(178)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-69,-33,Math.toRadians(180)),Math.toRadians(180))
+
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(-34.5,-54,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(12,-54,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(39,-29,Math.toRadians(180)),Math.toRadians(0))
                 .waitSeconds(0.1)
+
                 .setTangent(Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(178)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(12,-52,Math.toRadians(178)),Math.toRadians(180))
@@ -127,9 +231,16 @@ public class Blue_Stanga extends LinearOpMode {
         externalCamera.closeCameraDevice();
 
         if(PropZone=="LEFT"){
-            Actions.runBlocking(
-                    LeftLine
-            );
+            /*Actions.runBlocking(
+                    LeftLineFull
+            );*/
+            Actions.runBlocking(new SequentialAction(
+                    LineBack,
+                    BeginToBackboard,
+                    ToStack,
+                    ToBackboard,
+                    Parking
+            ));
         } else if(PropZone=="MIDDLE") {
             Actions.runBlocking(
                     MiddleLine
@@ -206,7 +317,6 @@ public class Blue_Stanga extends LinearOpMode {
                 return "RIGHT";
             }
         }
-
 
         @Override
         public Mat processFrame(Mat input) {

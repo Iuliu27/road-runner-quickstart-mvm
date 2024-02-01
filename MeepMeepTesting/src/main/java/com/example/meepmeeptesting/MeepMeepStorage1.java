@@ -339,11 +339,11 @@ public class MeepMeepStorage1 {
             .setConstraints(45, 50, Math.toRadians(180), Math.toRadians(180), 15.1)
             .followTrajectorySequence(driveShim ->
                     driveShim.trajectorySequenceBuilder(new Pose2d(-34.5, -58 , Math.toRadians(90)))
-                            .splineTo(new Vector2d(-28,-33),Math.toRadians(60))
-                            .setReversed(true)
-                            .splineToLinearHeading(new Pose2d(-42,-52,Math.toRadians(90)),Math.toRadians(180))
-                            .setReversed(false)
-                            .splineTo(new Vector2d(-63,-25),Math.toRadians(180))
+                            /*.splineToLinearHeading(new Pose2d(-27,-32,Math.toRadians(60)),Math.toRadians(60))
+                            .setTangent(Math.toRadians(-270))
+                            .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(90)),Math.toRadians(-270))
+                            .setTangent(Math.toRadians(180))*/
+                            .splineToLinearHeading(new Pose2d(-80,-56),Math.toRadians(180))
                             .build()
             );
     RoadRunnerBotEntity test=new DefaultBotBuilder(meepMeep)

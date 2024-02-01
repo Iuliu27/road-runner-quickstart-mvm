@@ -16,7 +16,7 @@ public class DefVal {
     public static double upperHookOpen = 1;
     public static double upperHookClosed = 0.75;
     public static double bottomHookClosed = 0.8;
-    public static double bottomHookOpen = 0.9;
+    public static double bottomHookOpen = 0.95;
 
     //CM converted to ticks
     public static double LiftHIGH = 50;
@@ -35,7 +35,7 @@ public class DefVal {
     public static double iLevel2 = 0.095;
     public static double iLevel3 = 0.13;
     public static double iLevel4 = 0.16;
-    public static double iLevel5 = 0.18;
+    public static double iLevel5 = 0.168;
 
     public static double iLevel6 = 0.35;
 
