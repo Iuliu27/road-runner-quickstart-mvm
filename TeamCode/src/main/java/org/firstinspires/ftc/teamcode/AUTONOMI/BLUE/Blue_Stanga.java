@@ -88,41 +88,43 @@ public class Blue_Stanga extends LinearOpMode {
 
         Action BeginToBackboard=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(-69.5,-34.5,Math.toRadians(180)),Math.toRadians(90))
-                .afterDisp(1,new SequentialAction(
-
-                        new ParallelAction(
-                                outtake.pivot(DefVal.pivot60),
-                                outtake.roll(DefVal.roll60),
-                                outtake.runToPosition("autonom")
-                        ),
-                        new SleepAction(1.5),
-                        new ParallelAction(
-                                outtake.upperHook("open"),
-                                outtake.bottomHook("open")
-                        ),
-                        new SleepAction(1),
-                        new ParallelAction(
-                                outtake.pivot(DefVal.pivot0),
-                                outtake.roll(DefVal.roll0)
-                        ),
-                        new SleepAction(1),
-                        outtake.runToPosition("ground")
-                ))
+                .splineToLinearHeading(new Pose2d(-69.9 ,-34.5,Math.toRadians(180)),Math.toRadians(90))
+//                .afterDisp(1,new SequentialAction(
+//
+//                        new ParallelAction(
+//                                outtake.pivot(DefVal.pivot60),
+//                                outtake.roll(DefVal.roll60),
+//                                outtake.runToPosition("autonom")
+//                        ),
+//                        new SleepAction(1.5),
+//                        new ParallelAction(
+//                                outtake.upperHook("open"),
+//                                outtake.bottomHook("open")
+//                        ),
+//                        new SleepAction(1),
+//                        new ParallelAction(
+//                                outtake.pivot(DefVal.pivot0),
+//                                outtake.roll(DefVal.roll0)
+//                        ),
+//                        new SleepAction(1),
+//                        outtake.runToPosition("ground")
+//                ))
                 .build();
 
         cPose=new Pose2d(-69,-33,Math.toRadians(180));
 
         Action ToStack=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(-34.5,-54.1,Math.toRadians(180)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(12,-54.1,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-34.5,-60,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(12,-58,Math.toRadians(180)),Math.toRadians(0))
                 //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(41.3,-28,Math.toRadians(180)),Math.toRadians(0))
                 .afterDisp(0.1,new SequentialAction(
-                        intake.angle(5),
-                        intake.reversePixel(),
-                        new SleepAction(2),
+                        new ParallelAction(
+                                intake.reversePixel(),
+                                intake.angle(5)
+                        ),
+                        //new SleepAction(1.5),
                         new ParallelAction(
                                 outtake.bottomHook("closed"),outtake.upperHook("closed")
                         ),
@@ -135,29 +137,29 @@ public class Blue_Stanga extends LinearOpMode {
         Action ToBackboard=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(12,-56.5,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-54.5,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-58,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-55,Math.toRadians(180)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-69.5,-34.5,Math.toRadians(180)),Math.toRadians(180))
-                .afterDisp(1,new SequentialAction(
-
-                        new ParallelAction(
-                                outtake.pivot(DefVal.pivot60),
-                                outtake.roll(DefVal.roll60),
-                                outtake.runToPosition("low")
-                        ),
-                        new SleepAction(1.5),
-                        new ParallelAction(
-                                outtake.upperHook("open"),
-                                outtake.bottomHook("open")
-                        ),
-                        new SleepAction(1),
-                        new ParallelAction(
-                                outtake.pivot(DefVal.pivot0),
-                                outtake.roll(DefVal.roll0)
-                        ),
-                        new SleepAction(1),
-                        outtake.runToPosition("ground")
-                ))
+//                .afterDisp(1,new SequentialAction(
+//
+//                        new ParallelAction(
+//                                outtake.pivot(DefVal.pivot60),
+//                                outtake.roll(DefVal.roll60),
+//                                outtake.runToPosition("low")
+//                        ),
+//                        new SleepAction(1.5),
+//                        new ParallelAction(
+//                                outtake.upperHook("open"),
+//                                outtake.bottomHook("open")
+//                        ),
+//                        new SleepAction(1),
+//                        new ParallelAction(
+//                                outtake.pivot(DefVal.pivot0),
+//                                outtake.roll(DefVal.roll0)
+//                        ),
+//                        new SleepAction(1),
+//                        outtake.runToPosition("ground")
+//                ))
                 .build();
 
         cPose=new Pose2d(-69,-33,Math.toRadians(180));
@@ -236,9 +238,52 @@ public class Blue_Stanga extends LinearOpMode {
             );*/
             Actions.runBlocking(new SequentialAction(
                     LineBack,
-                    BeginToBackboard,
+                    new SequentialAction(
+                            new ParallelAction(
+                                    BeginToBackboard,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            //new SleepAction(1.5),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(0.3),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
                     ToStack,
                     ToBackboard,
+                    new SequentialAction(
+                            new ParallelAction(
+                                    BeginToBackboard,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            //new SleepAction(1.5),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(0.3),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
                     Parking
             ));
         } else if(PropZone=="MIDDLE") {
