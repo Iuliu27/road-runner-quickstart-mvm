@@ -43,10 +43,10 @@ public final class TwoDeadWheelLocalizer implements Localizer {
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
         par = new OverflowEncoder(new RawEncoder(hardwareMap.get(DcMotorEx.class, "intakeMotor")));
         perp = new OverflowEncoder(new RawEncoder(hardwareMap.get(DcMotorEx.class, "rightBack")));
-        perp.setDirection(DcMotorSimple.Direction.REVERSE);
+       // par.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // TODO: reverse encoder directions if needed
-          // perp.setDirection(DcMotorSimple.Direction.REVERSE);
+          perp.setDirection(DcMotorSimple.Direction.REVERSE);
 
         this.imu = imu;
 

@@ -88,36 +88,15 @@ public class Blue_Stanga extends LinearOpMode {
 
         Action BeginToBackboard=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(-70.3 ,-37,Math.toRadians(180)),Math.toRadians(90))
-//                .afterDisp(1,new SequentialAction(
-//
-//                        new ParallelAction(
-//                                outtake.pivot(DefVal.pivot60),
-//                                outtake.roll(DefVal.roll60),
-//                                outtake.runToPosition("autonom")
-//                        ),
-//                        new SleepAction(1.5),
-//                        new ParallelAction(
-//                                outtake.upperHook("open"),
-//                                outtake.bottomHook("open")
-//                        ),
-//                        new SleepAction(1),
-//                        new ParallelAction(
-//                                outtake.pivot(DefVal.pivot0),
-//                                outtake.roll(DefVal.roll0)
-//                        ),
-//                        new SleepAction(1),
-//                        outtake.runToPosition("ground")
-//                ))
+                .splineToLinearHeading(new Pose2d(-70.3 ,-36,Math.toRadians(180)),Math.toRadians(90))
                 .build();
 
-        cPose=new Pose2d(-69,-33,Math.toRadians(180));
+        cPose=new Pose2d(-70.3,-36,Math.toRadians(180));
 
         Action ToStack=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(-34.5,-57,Math.toRadians(180)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(12,-56,Math.toRadians(180)),Math.toRadians(0))
-                //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-34.5,-55,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(12,-53,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(42,-27.5,Math.toRadians(180)),Math.toRadians(0))
                 .afterDisp(5,new SequentialAction(
                         new ParallelAction(
@@ -132,37 +111,17 @@ public class Blue_Stanga extends LinearOpMode {
                 ))
                 .build();
 
-        cPose=new Pose2d(41,-29,Math.toRadians(180));
+        cPose=new Pose2d(42,-27.5,Math.toRadians(180));
 
         Action ToBackboard=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(-90))
                 //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(12,-58,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-57,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-60.5,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-60,Math.toRadians(180)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-71,-33,Math.toRadians(180)),Math.toRadians(180))
-//                .afterDisp(1,new SequentialAction(
-//
-//                        new ParallelAction(
-//                                outtake.pivot(DefVal.pivot60),
-//                                outtake.roll(DefVal.roll60),
-//                                outtake.runToPosition("low")
-//                        ),
-//                        new SleepAction(1.5),
-//                        new ParallelAction(
-//                                outtake.upperHook("open"),
-//                                outtake.bottomHook("open")
-//                        ),
-//                        new SleepAction(1),
-//                        new ParallelAction(
-//                                outtake.pivot(DefVal.pivot0),
-//                                outtake.roll(DefVal.roll0)
-//                        ),
-//                        new SleepAction(1),
-//                        outtake.runToPosition("ground")
-//                ))
                 .build();
 
-        cPose=new Pose2d(-69,-33,Math.toRadians(180));
+        cPose=new Pose2d(-71,-33,Math.toRadians(180));
 
         Action Parking=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(-90))
@@ -193,9 +152,6 @@ public class Blue_Stanga extends LinearOpMode {
         externalCamera.closeCameraDevice();
 
         if(PropZone=="LEFT"){
-            /*Actions.runBlocking(
-                    LeftLineFull
-            );*/
             Actions.runBlocking(new SequentialAction(
                     LineBack,
                     new SequentialAction(
@@ -224,19 +180,18 @@ public class Blue_Stanga extends LinearOpMode {
                     ToBackboard,
                     new SequentialAction(
                             new ParallelAction(
-                                    BeginToBackboard,
                                     new ParallelAction(
                                             outtake.pivot(DefVal.pivot60),
                                             outtake.roll(DefVal.roll60),
                                             outtake.runToPosition("low")
                                     )
                             ),
-                            new SleepAction(1.5),
+                            new SleepAction(1.2),
                             new ParallelAction(
                                     outtake.upperHook("open"),
                                     outtake.bottomHook("open")
                             ),
-                            new SleepAction(1.5),
+                            new SleepAction(1.2),
                             new ParallelAction(
                                     outtake.pivot(DefVal.pivot0),
                                     outtake.roll(DefVal.roll0)
@@ -264,7 +219,7 @@ public class Blue_Stanga extends LinearOpMode {
 
 
 
- //nu ne pasa
+    //nu ne pasa
 
 
 
@@ -308,8 +263,8 @@ public class Blue_Stanga extends LinearOpMode {
         public Scalar nonSelectedColor = new Scalar(255, 0, 0);
         public Scalar selectedColor = new Scalar(0, 0, 255);
 
-         public Scalar lowerBlue = new Scalar(106, 100, 50);
-         public Scalar upperBlue = new Scalar(230, 255, 255);
+        public Scalar lowerBlue = new Scalar(106, 100, 50);
+        public Scalar upperBlue = new Scalar(230, 255, 255);
 
         private int selectedRect = -1;
 
@@ -396,7 +351,7 @@ public class Blue_Stanga extends LinearOpMode {
             }
         }
 
-//        private void calculateSquarePosition() {
+        //        private void calculateSquarePosition() {
 //            squareCenter.x = 0;
 //            squareCenter.y = 0;
 //
@@ -420,29 +375,29 @@ public class Blue_Stanga extends LinearOpMode {
 //                }
 //            }
 //        }
-private void calculateSquarePosition() {
-    squareCenter.x = 0;
-    squareCenter.y = 0;
+        private void calculateSquarePosition() {
+            squareCenter.x = 0;
+            squareCenter.y = 0;
 
-    if (!contours.isEmpty()) {
-        double maxArea = -1;
-        int maxAreaIdx = -1;
-        double minContourArea =  19;
+            if (!contours.isEmpty()) {
+                double maxArea = -1;
+                int maxAreaIdx = -1;
+                double minContourArea =  19;
 
-        for (int i = 0; i < contours.size(); i++) {
-            double area = Imgproc.contourArea(contours.get(i));
-            if (area >= minContourArea && area > maxArea) {
-                maxArea = area;
-                maxAreaIdx = i;
+                for (int i = 0; i < contours.size(); i++) {
+                    double area = Imgproc.contourArea(contours.get(i));
+                    if (area >= minContourArea && area > maxArea) {
+                        maxArea = area;
+                        maxAreaIdx = i;
+                    }
+                }
+
+                if (maxAreaIdx != -1) {
+                    Moments moments = Imgproc.moments(contours.get(maxAreaIdx));
+                    squareCenter.x = moments.m10 / moments.m00;
+                    squareCenter.y = moments.m01 / moments.m00;
+                }
             }
         }
-
-        if (maxAreaIdx != -1) {
-            Moments moments = Imgproc.moments(contours.get(maxAreaIdx));
-            squareCenter.x = moments.m10 / moments.m00;
-            squareCenter.y = moments.m01 / moments.m00;
-        }
-    }
-}
     }
 }
