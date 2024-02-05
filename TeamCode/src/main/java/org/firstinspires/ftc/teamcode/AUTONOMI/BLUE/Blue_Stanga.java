@@ -38,7 +38,7 @@ import java.util.List;
 
 import kotlin.math.UMathKt;
 
-@Autonomous(name = "Blue_stanga",group="Iuliu")
+@Autonomous(name = "Blue_stanga",group="Iuliu")//Lidi nu pune mana
 public class Blue_Stanga extends LinearOpMode {
     Pose2d beginPose = new Pose2d(-34.5, -58, Math.toRadians(90));
     Pose2d cPose;

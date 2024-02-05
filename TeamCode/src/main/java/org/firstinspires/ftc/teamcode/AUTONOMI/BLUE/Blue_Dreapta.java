@@ -29,7 +29,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.ArrayList;
 import java.util.List;
 
-@Autonomous(name = "Blue_Dreapta",group="Iuliu")
+@Autonomous(name = "Blue_Dreapta",group="Iuliu")//Lidi mu pune mana
 public class Blue_Dreapta extends LinearOpMode {
     Pose2d beginPose = new Pose2d(-36.82, 61.62, Math.toRadians(-87.58));
     HardwareMapping robot = new HardwareMapping();
