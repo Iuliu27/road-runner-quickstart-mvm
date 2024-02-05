@@ -529,7 +529,7 @@ public class HardwareMapping {
         }
 
         public SequentialAction reversePixel(){
-            return new SequentialAction(reverseBase(), new SleepAction(2), stop());
+            return new SequentialAction(reverseBase(), new SleepAction(1.5), stop());
         }
 
         private Action reverseBase(){

@@ -109,7 +109,7 @@ public class AutoRedDreaptaBottom extends LinearOpMode {
                                 //outtake.yaw(0),
                                 //outtake.latch("closed"),
                                 outtake.bottomHook("open"),
-                                outtake.upperHook("open"),
+                                //outtake.upperHook("open"),
                                 //intake.sensingOff(),
                                 intake.angle(1)
                         ),
