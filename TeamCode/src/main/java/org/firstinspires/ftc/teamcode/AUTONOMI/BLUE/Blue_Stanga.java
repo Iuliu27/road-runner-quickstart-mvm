@@ -120,7 +120,7 @@ public class Blue_Stanga extends LinearOpMode {
 
         Action ToStack=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(-34.5,-55,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-34.5,-54,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(12,-53,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(41.5,-26,Math.toRadians(180)),Math.toRadians(0))
                 .afterDisp(5,new SequentialAction(

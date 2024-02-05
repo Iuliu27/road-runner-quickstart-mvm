@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.AUTONOMI.BLUE;
 
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -31,11 +34,14 @@ import java.util.List;
 
 @Autonomous(name = "Blue_Dreapta",group="Iuliu")//Lidi mu pune mana
 public class Blue_Dreapta extends LinearOpMode {
-    Pose2d beginPose = new Pose2d(-36.82, 61.62, Math.toRadians(-87.58));
+    Pose2d beginPose = new Pose2d(-36, 60, Math.toRadians(270));
+    Pose2d cPose;
     HardwareMapping robot = new HardwareMapping();
     OpenCvCamera externalCamera;
+    HardwareMapping.Intake intake = robot.new Intake();
+    HardwareMapping.Outtake outtake = robot.new Outtake();
     Servo intakeServoRight,intakeServoLeft;
-    nume pipeline;
+    Blue_Dreapta.nume pipeline;
     String PropZone ="RIGHT";
 
     @Override
@@ -95,7 +101,7 @@ public class Blue_Dreapta extends LinearOpMode {
 
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-34.5,30,Math.toRadians(270)),Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-43,30,Math.toRadians(270)),Math.toRadians(270))
                 .setTangent(Math.toRadians(-90))
                 .splineToLinearHeading(new Pose2d(-34.5,40,Math.toRadians(270)),Math.toRadians(-270))
                 .waitSeconds(0.1)
@@ -126,7 +132,7 @@ public class Blue_Dreapta extends LinearOpMode {
         Action RightLine=drive.actionBuilder(beginPose) //dreapta
                 .setReversed(true)
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-46.70, 30.16, Math.toRadians(250)), Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-43, 33, Math.toRadians(250)), Math.toRadians(-90))
                 .setTangent(90)
                 .splineToLinearHeading(new Pose2d(-38.28, 45.7, Math.toRadians(250)), Math.toRadians(90))
                 //.setTangent(Math.toRadians(90))
@@ -151,6 +157,53 @@ public class Blue_Dreapta extends LinearOpMode {
                 //.setTangent(Math.toRadians(180))
                 //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
+        Action pixeldreapta=drive.actionBuilder(beginPose)
+                .splineToLinearHeading(new Pose2d(-41, 35, Math.toRadians(236)), Math.toRadians(236))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(-34, 55, Math.toRadians(270.00)), Math.toRadians(270.00))
+                .setReversed(false)
+                 .build();
+
+
+        cPose= new Pose2d(-34,55,Math.toRadians(270));
+        Action catrebackdrop=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(270.00)), Math.toRadians(270.00))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(22, 12, Math.toRadians(0.00)), Math.toRadians(0))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51.5, 30, Math.toRadians(0)), Math.toRadians(0))
+                .build();
+        cPose= new Pose2d(51.5,30,Math.toRadians(0));
+        Action catrestack=drive.actionBuilder(cPose)
+                //.setTangent(Math.toRadians(-140))
+                //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(9,4,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-63,4,Math.toRadians(0)),Math.toRadians(0))
+                .afterDisp(1,new SequentialAction(
+                        new ParallelAction(
+                                intake.reversePixel(),
+                                intake.angle(5)
+                        ),
+                        //new SleepAction(1.5),
+                        new ParallelAction(
+                                outtake.bottomHook("closed"),outtake.upperHook("closed")
+                        ),
+                        intake.stop()
+                ))
+                .build();
+        cPose= new Pose2d(-63,6,Math.toRadians(0));
+        Action catrebackdrop2=drive.actionBuilder(cPose)
+                .setReversed(false)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-58, 10, Math.toRadians(0)), Math.toRadians(0))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20, 10, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(52.5,39.5,Math.toRadians(0)),Math.toRadians(0))
+                .build();
+                //.setTangent(0)
+                //.splineToLinearHeading(new Pose2d(8, 4, Math.toRadians(0)), Math.toRadians(0))
         waitForStart();
 
         externalCamera.stopStreaming();
@@ -159,15 +212,62 @@ public class Blue_Dreapta extends LinearOpMode {
         if(PropZone=="LEFT"){
             Actions.runBlocking(
                     LeftLine
+
             );
         } else if(PropZone=="MIDDLE") {
             Actions.runBlocking(
                     MiddleLine
             );
         } else if(PropZone=="RIGHT") {
-            Actions.runBlocking(
-                    RightLine
-            );
+            Actions.runBlocking(new SequentialAction(
+                    pixeldreapta,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(0.7),
+                            outtake.runToPosition("ground")
+                    ),
+                            catrestack,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(0.7),
+                            outtake.runToPosition("ground")
+                    )
+
+                            ));
         }
         while (opModeIsActive()) {
             //telemetry
@@ -316,7 +416,7 @@ public class Blue_Dreapta extends LinearOpMode {
             }
         }
 
-//        private void calculateSquarePosition() {
+        //        private void calculateSquarePosition() {
 //            squareCenter.x = 0;
 //            squareCenter.y = 0;
 //
@@ -340,30 +440,30 @@ public class Blue_Dreapta extends LinearOpMode {
 //                }
 //            }
 //        }
-private void calculateSquarePosition() {
-    squareCenter.x = 0;
-    squareCenter.y = 0;
+        private void calculateSquarePosition() {
+            squareCenter.x = 0;
+            squareCenter.y = 0;
 
-    if (!contours.isEmpty()) {
-        double maxArea = -1;
-        int maxAreaIdx = -1;
-        double minContourArea =  190;
+            if (!contours.isEmpty()) {
+                double maxArea = -1;
+                int maxAreaIdx = -1;
+                double minContourArea =  190;
 
-        for (int i = 0; i < contours.size(); i++) {
-            double area = Imgproc.contourArea(contours.get(i));
-            if (area >= minContourArea && area > maxArea) {
-                maxArea = area;
-                maxAreaIdx = i;
+                for (int i = 0; i < contours.size(); i++) {
+                    double area = Imgproc.contourArea(contours.get(i));
+                    if (area >= minContourArea && area > maxArea) {
+                        maxArea = area;
+                        maxAreaIdx = i;
+                    }
+                }
+
+                if (maxAreaIdx != -1) {
+                    Moments moments = Imgproc.moments(contours.get(maxAreaIdx));
+                    squareCenter.x = moments.m10 / moments.m00;
+                    squareCenter.y = moments.m01 / moments.m00;
+                }
             }
         }
-
-        if (maxAreaIdx != -1) {
-            Moments moments = Imgproc.moments(contours.get(maxAreaIdx));
-            squareCenter.x = moments.m10 / moments.m00;
-            squareCenter.y = moments.m01 / moments.m00;
-        }
-    }
-}
 
     }
 }
