@@ -40,6 +40,7 @@ public class Red_Dreapta extends LinearOpMode {
     HardwareMapping.Intake intake = robot.new Intake();
     HardwareMapping.Outtake outtake = robot.new Outtake();
     OpenCvCamera externalCamera;
+    Pose2d cPose;
     Servo intakeServoRight,intakeServoLeft;
     nume pipeline;
     String PropZone ="RIGHT";
@@ -71,68 +72,118 @@ public class Red_Dreapta extends LinearOpMode {
             telemetry.update();
         }
 
-        Action LeftLine= drive.actionBuilder(beginPose) //stanga
+        Action LineLeftBack=drive.actionBuilder(beginPose)  //1
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(5,-32,Math.toRadians(120)),Math.toRadians(90))
-                .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(24,-58,Math.toRadians(90)),Math.toRadians(-90))
-                .waitSeconds(0.1)
-                .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(50,-58,Math.toRadians(90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(2,-35,Math.toRadians(120)),Math.toRadians(90))
+                .setTangent(Math.toRadians(270)) //-90  ,270,180
+                //robotul este in pozitia principala
+                .splineToLinearHeading(new Pose2d(11,-56,Math.toRadians(90)),Math.toRadians(-90))
                 .build();
 
-        Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
-                .splineToLinearHeading(new Pose2d(11,-29,Math.toRadians(90)),Math.toRadians(90))
-                .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(11,-58,Math.toRadians(90)),Math.toRadians(-90))
-                .waitSeconds(0.1)
-                .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(50,-58,Math.toRadians(90)),Math.toRadians(0))
-                .build();
-
-        Action RightLine=drive.actionBuilder(beginPose) //dreapta
-                .splineToLinearHeading(new Pose2d(19,-34,Math.toRadians(60)),Math.toRadians(60))
-                .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(11,-58,Math.toRadians(90)),Math.toRadians(-90))
-                .waitSeconds(0.1)
-                .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(50,-58,Math.toRadians(90)),Math.toRadians(0))
-                .build();
-
-        Action MiddleLineTryhard = drive.actionBuilder(beginPose) //mijloc
-                .splineToLinearHeading(new Pose2d(11,-29,Math.toRadians(90)),Math.toRadians(90))
-                .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(11,-58,Math.toRadians(90)),Math.toRadians(-90))
-                .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(42,-31,Math.toRadians(0)),Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(45,-31,Math.toRadians(0)),Math.toRadians(90))
-                .build();
-
-        Action RightLineTryhard = drive.actionBuilder(beginPose) //dreapta
-                .splineToLinearHeading(new Pose2d(19,-34,Math.toRadians(60)),Math.toRadians(60))
-                .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(11,-58,Math.toRadians(90)),Math.toRadians(-90))
-                .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(42,-38,Math.toRadians(0)),Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(45,-38,Math.toRadians(0)),Math.toRadians(90))
-                .build();
-
-        Action LeftLineTryhard = drive.actionBuilder(beginPose) //left
+        Action LineMiddleBack = drive.actionBuilder(beginPose) //mijloc  1
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(4,-32,Math.toRadians(120)),Math.toRadians(90))
-                .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(24,-58,Math.toRadians(90)),Math.toRadians(-90))
-                .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(42,-24,Math.toRadians(0)),Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(45,-24,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(11,-35,Math.toRadians(90)),Math.toRadians(90))
+                .setTangent(Math.toRadians(270)) //-90  ,270,180
+                //robotul este in pozitia principala
+                .splineToLinearHeading(new Pose2d(11,-56,Math.toRadians(90)),Math.toRadians(-90))
                 .build();
 
+        Action LineRightBack=drive.actionBuilder(beginPose) //dreapta  1
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(17,-35,Math.toRadians(60)),Math.toRadians(90))
+                .setTangent(Math.toRadians(270)) //-90  ,270,180
+                //robotul este in pozitia principala
+                .splineToLinearHeading(new Pose2d(11,-56,Math.toRadians(90)),Math.toRadians(-90))
+                .build();
 
-        Action Parking = drive.actionBuilder(beginPose)
-                .waitSeconds(1)
-                //.setTangent(Math.toRadians(-90))
-                //.splineToLinearHeading(new Pose2d(42,-35,Math.toRadians(0)),Math.toRadians(-90))
-                //.lineToY(-35)
+        cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
+
+        Action BeginToBackboardLeft=drive.actionBuilder(cPose) //1
+                .setTangent(Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(50,-25,Math.toRadians(0)),Math.toRadians(90))
+                .build();
+
+        cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
+
+        Action BeginToBackboardMiddle=drive.actionBuilder(cPose)   //1
+                .setTangent(Math.toRadians(90))
+                //begin backboard
+                .splineToLinearHeading(new Pose2d(50,-31,Math.toRadians(0)),Math.toRadians(90))
+                .build();
+
+        cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
+
+        Action BeginToBackboardRight=drive.actionBuilder(cPose)  //1
+                .setTangent(Math.toRadians(90))
+                //begin backboard
+                .splineToLinearHeading(new Pose2d(50,-36,Math.toRadians(0)),Math.toRadians(90))
+                .build();
+
+        cPose=new Pose2d(-70.3,-36,Math.toRadians(180));
+
+        Action ToStack=drive.actionBuilder(cPose)  //1
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(31.8,-53,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-30,-53,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-63,-37,Math.toRadians(0)),Math.toRadians(180))
+                .afterDisp(5,new SequentialAction(
+                        new ParallelAction(
+                                intake.reversePixel(),
+                                intake.angle(5)
+                        ),
+                        //new SleepAction(1.5),
+                        new ParallelAction(
+                                outtake.bottomHook("closed"),outtake.upperHook("closed")
+                        ),
+                        intake.stop()
+                ))
+                .build();
+
+        cPose=new Pose2d(42,-27,Math.toRadians(180));
+
+        Action ToBackboardLeft=drive.actionBuilder(cPose) //1
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-10,-53,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20,-53,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50,-46,Math.toRadians(0)),Math.toRadians(0))
+                .build();
+
+        cPose=new Pose2d(42,-27,Math.toRadians(180));
+
+        Action ToBackboardMiddle=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(-90))
+                //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-59,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-57,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-72,-29,Math.toRadians(180)),Math.toRadians(180))
+                .build();
+
+        cPose=new Pose2d(42,-27.5,Math.toRadians(180));
+
+        Action ToBackboardRight=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(-90))
+                //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-59,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-57,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-71,-25,Math.toRadians(180)),Math.toRadians(180))
+                .build();
+
+        Action ToBackboard1=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(-90))
+                //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-60.5,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-60,Math.toRadians(180)),Math.toRadians(180))
+                .build();
+
+        Action ToBackboard2=drive.actionBuilder(cPose)
+                .splineToLinearHeading(new Pose2d(-71,-33,Math.toRadians(180)),Math.toRadians(180))
+                .build();
+
+        cPose=new Pose2d(-71,-33,Math.toRadians(180));
+
+        Action Parking=drive.actionBuilder(cPose)  //1
+                .setTangent(Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(51,-58,Math.toRadians(0)),Math.toRadians(90))
                 .build();
 
         waitForStart();
@@ -142,74 +193,162 @@ public class Red_Dreapta extends LinearOpMode {
 
         if(PropZone=="LEFT"){
             Actions.runBlocking(new SequentialAction(
-                    //MiddleLine
-                    //MiddleLineTryhard,
-                    LeftLineTryhard,
-                    outtake.runToPosition("autonom"),
-                    new SleepAction(2),
-                    new ParallelAction(
-                            outtake.pivot(DefVal.pivot60),
-                            outtake.roll(DefVal.roll60)
+                    LineLeftBack,
+                    new SequentialAction(
+                            new ParallelAction(
+                                    BeginToBackboardLeft,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            new SleepAction(0.5),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
                     ),
-                    new SleepAction(2),
-                    new ParallelAction(
-                            //outtake.upperHook("open"),
-                            outtake.bottomHook("open")
+                    ToStack,
+                    ToBackboardLeft,
+                    /*ToBackboard1,
+                    new SleepAction(0.5),
+                    ToBackboard2,*/
+                    new SequentialAction(
+                            new ParallelAction(
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1.2),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1.2),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
                     ),
-                    new SleepAction(2),
-                    new ParallelAction(
-                            outtake.pivot(DefVal.pivot0),
-                            outtake.roll(DefVal.roll0)
-                    ),
-                    new SleepAction(1),
-                    outtake.runToPosition("ground")
+                    Parking
             ));
         } else if(PropZone=="MIDDLE") {
             Actions.runBlocking(new SequentialAction(
-                    //MiddleLine
-                    MiddleLineTryhard,
-                    outtake.runToPosition("autonom"),
-                    new SleepAction(2),
-                    new ParallelAction(
-                            outtake.pivot(DefVal.pivot60),
-                            outtake.roll(DefVal.roll60)
+                    LineMiddleBack,
+                    new SequentialAction(
+                            new ParallelAction(
+                                    BeginToBackboardMiddle,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            //new SleepAction(0.5),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(0.7),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
                     ),
-                    new SleepAction(2),
-                    new ParallelAction(
-                           // outtake.upperHook("open"),
-                            outtake.bottomHook("open")
+                    ToStack,
+                    ToBackboardLeft,
+                    /*ToBackboard1,
+                    new SleepAction(0.5),
+                    ToBackboard2,*/
+                    new SequentialAction(
+                            new ParallelAction(
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1.2),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1.2),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
                     ),
-                    new SleepAction(2),
-                    new ParallelAction(
-                            outtake.pivot(DefVal.pivot0),
-                            outtake.roll(DefVal.roll0)
-                    ),
-                    new SleepAction(1),
-                    outtake.runToPosition("ground")
+                    Parking
             ));
         } else if(PropZone=="RIGHT") {
             Actions.runBlocking(new SequentialAction(
-                    //MiddleLine
-                    //MiddleLineTryhard,
-                    RightLineTryhard,
-                    outtake.runToPosition("autonom"),
-                    new SleepAction(2),
-                    new ParallelAction(
-                            outtake.pivot(DefVal.pivot60),
-                            outtake.roll(DefVal.roll60)
+                    LineRightBack,
+                    new SequentialAction(
+                            new ParallelAction(
+                                    BeginToBackboardRight,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            //new SleepAction(0.5),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(0.7),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
                     ),
-                    new SleepAction(2),
-                    new ParallelAction(
-                            //outtake.upperHook("open"),
-                            outtake.bottomHook("open")
+                    ToStack,
+                    ToBackboardLeft,
+                    /*ToBackboard1,
+                    new SleepAction(0.5),
+                    ToBackboard2,*/
+                    new SequentialAction(
+                            new ParallelAction(
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1.2),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1.2),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
                     ),
-                    new SleepAction(2),
-                    new ParallelAction(
-                            outtake.pivot(DefVal.pivot0),
-                            outtake.roll(DefVal.roll0)
-                    ),
-                    new SleepAction(1),
-                    outtake.runToPosition("ground")
+                    Parking
             ));
         }
         while (opModeIsActive()) {
