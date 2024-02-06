@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.AUTONOMI.RED;
 
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import  com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -35,6 +38,9 @@ public class Red_Stanga extends LinearOpMode {
     HardwareMapping robot = new HardwareMapping();
     OpenCvCamera externalCamera;
     Servo intakeServoRight,intakeServoLeft;
+    Pose2d cPose;
+    HardwareMapping.Intake intake = robot.new Intake();
+    HardwareMapping.Outtake outtake = robot.new Outtake();
     ElapsedTime timer;
     nume pipeline;
     String PropZone ="RIGHT";
@@ -68,58 +74,321 @@ public class Red_Stanga extends LinearOpMode {
 
         Action LeftLine= drive.actionBuilder(beginPose) //stanga
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-41,-34,Math.toRadians(120)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-26,30,Math.toRadians(270)),Math.toRadians(270))
+                .setTangent(Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-30,40,Math.toRadians(270)),Math.toRadians(270))
+                .turn(Math.toRadians(100))
+                //stack
+                .setTangent(Math.toRadians(-180))
+                //.setReversed(false)
+                .splineToLinearHeading(new Pose2d(-60.04,36,Math.toRadians(0)),Math.toRadians(-180))
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-34.5,-40,Math.toRadians(90)),Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-60, 12, Math.toRadians(0)), Math.toRadians(-90))
+                //se duce la backboard
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+                //.strafeLeft(25)
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-60,12,Math.toRadians(0)),Math.toRadians(180))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+
                 .waitSeconds(0.1)
                 //.setTangent(Math.toRadians(180))
                 //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action MiddleLine = drive.actionBuilder(beginPose) //mijloc
-                .splineToLinearHeading(new Pose2d(-34.5,-30,Math.toRadians(90)),Math.toRadians(90))
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-43,30,Math.toRadians(270)),Math.toRadians(270))
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-34.5,-40,Math.toRadians(90)),Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-34.5,40,Math.toRadians(270)),Math.toRadians(-270))
+                .waitSeconds(0.1)
+                //.setTangent(Math.toRadians(180))
+                //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
+                .turn(Math.toRadians(100))
+                //stack
+                .setTangent(Math.toRadians(-180))
+                //.setReversed(false)
+                .splineToLinearHeading(new Pose2d(-60.04,36,Math.toRadians(0)),Math.toRadians(-180))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-58.28, 12, Math.toRadians(0)), Math.toRadians(-90))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+                //.strafeLeft(25)
+                .setTangent(Math.toRadians(-140))
+                .splineToLinearHeading(new Pose2d(-60.04,12,Math.toRadians(0)),Math.toRadians(-180))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+
                 .waitSeconds(0.1)
                 //.setTangent(Math.toRadians(180))
                 //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
                 .build();
 
         Action RightLine=drive.actionBuilder(beginPose) //dreapta
-                .splineToLinearHeading(new Pose2d(-27,-32,Math.toRadians(60)),Math.toRadians(60))
-                .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-40,Math.toRadians(90)),Math.toRadians(270))
-                //.waitSeconds(0.1)
+                .setReversed(true)
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-43, 33, Math.toRadians(250)), Math.toRadians(-90))
+                .setTangent(90)
+                .splineToLinearHeading(new Pose2d(-38.28, 45.7, Math.toRadians(250)), Math.toRadians(90))
+                //.setTangent(Math.toRadians(90))
+                .turn(Math.toRadians(100))
+                //stack
+                .setTangent(Math.toRadians(-180))
+                //.setReversed(false)
+                .splineToLinearHeading(new Pose2d(-60.04,36,Math.toRadians(0)),Math.toRadians(-180))
+                .setTangent(Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-58.28, 12, Math.toRadians(0)), Math.toRadians(-90))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+                //.strafeLeft(25)
+                .setTangent(Math.toRadians(-140))
+                .splineToLinearHeading(new Pose2d(-60.04,12,Math.toRadians(0)),Math.toRadians(-180))
+                .setTangent(0)
+                .splineToLinearHeading(new Pose2d(20, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48,30,Math.toRadians(0)),Math.toRadians(0))
+
+                .waitSeconds(0.1)
                 //.setTangent(Math.toRadians(180))
-                //.splineToLinearHeading(new Pose2d(-80,-56,Math.toRadians(90)),Math.toRadians(180))
+                //.splineToLinearHeading(new Pose2d(-80,-58,Math.toRadians(90)),Math.toRadians(180))
+                .build();
+        Action pixeldreapta=drive.actionBuilder(beginPose)  //1
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-33,-35,Math.toRadians(60)),Math.toRadians(90))
+                .setTangent(Math.toRadians(-180))
+                .splineToLinearHeading(new Pose2d(-40,-55,Math.toRadians(90)),Math.toRadians(-270))
                 .build();
 
+        Action pixelstanga=drive.actionBuilder(beginPose)  //1
+                .splineToLinearHeading(new Pose2d(-41, -35, Math.toRadians(125)), Math.toRadians(-180))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(-34, -55, Math.toRadians(90)), Math.toRadians(270.00))
+                .build();
+
+        Action pixelmijloc=drive.actionBuilder(beginPose) //1
+                .splineToLinearHeading(new Pose2d(-36,-33,Math.toRadians(90)),Math.toRadians(270))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(-36, -55, Math.toRadians(90)), Math.toRadians(270.00))
+                .setTangent(Math.toRadians(-180))
+                .splineToLinearHeading(new Pose2d(-55,-15,Math.toRadians(90)),Math.toRadians(90))
+                .build();
+
+        cPose=new Pose2d(-55,15,Math.toRadians(270));
+
+        Action catrebackdropdreapta=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(22, -12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51, -33, Math.toRadians(0)), Math.toRadians(0))
+                .build();
+
+        cPose= new Pose2d(-34,55,Math.toRadians(270));
+        Action catrebackdrop=drive.actionBuilder(cPose)  //1
+                .setTangent(Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-34, -10, Math.toRadians(90)), Math.toRadians(90))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(22, -12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51, -33, Math.toRadians(0)), Math.toRadians(0))
+                .build();
+        cPose= new Pose2d(52,33,Math.toRadians(0));
+        Action catrestack=drive.actionBuilder(cPose)  //1
+                //.setTangent(Math.toRadians(-140))
+                //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(9,-2,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-61,-7.5,Math.toRadians(0)),Math.toRadians(180))
+                .afterDisp(1,new SequentialAction(
+                        new ParallelAction(
+                                intake.reversePixel(),
+                                intake.angle(5)
+                        ),
+                        //new SleepAction(1.5),
+                        new ParallelAction(
+                                outtake.bottomHook("closed"),outtake.upperHook("closed")
+                        ),
+                        intake.stop()
+                ))
+                .build();
+        cPose= new Pose2d(-61,6,Math.toRadians(0));
+        Action catrebackdrop2=drive.actionBuilder(cPose)  //1
+                .setReversed(false)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-58, -10, Math.toRadians(0)), Math.toRadians(0))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20, -10, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51,-34,Math.toRadians(0)),Math.toRadians(0))
+                .build();
+        //.setTangent(0)
+        //.splineToLinearHeading(new Pose2d(8, 4, Math.toRadians(0)), Math.toRadians(0))
+        cPose=new Pose2d(50,34,Math.toRadians(0));
+        Action Parking=drive.actionBuilder(cPose)  //1
+                .setTangent(90)
+                .splineToLinearHeading(new Pose2d(49,-20,Math.toRadians(0)),Math.toRadians(90))
+                .build();
         waitForStart();
 
-        externalCamera.stopStreaming();
-        externalCamera.closeCameraDevice();
+//        externalCamera.stopStreaming();
+//        externalCamera.closeCameraDevice();
 
         if(PropZone=="LEFT"){
-            Actions.runBlocking(
-                    LeftLine
-            );
+            Actions.runBlocking(new SequentialAction(
+                    pixelstanga,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    catrestack,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop2,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    Parking
+            ));
         } else if(PropZone=="MIDDLE") {
-            Actions.runBlocking(
-                    MiddleLine
-            );
+            Actions.runBlocking(new SequentialAction(
+                    pixelmijloc,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdropdreapta,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    catrestack,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop2,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    Parking
+            ));
         } else if(PropZone=="RIGHT") {
-            Actions.runBlocking(
-                    RightLine
-            );
+            Actions.runBlocking(new SequentialAction(
+                    pixeldreapta,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    catrestack,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop2,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    Parking
+            ));
         }
         while (opModeIsActive()) {
             //telemetry
-        }
-
-
-
-        while (opModeIsActive()) {
-
         }
     }
 

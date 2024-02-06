@@ -143,8 +143,8 @@ public class Red_Dreapta extends LinearOpMode {
 
         Action ToBackboardLeft=drive.actionBuilder(cPose) //1
                 .setTangent(Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(-10,-53,Math.toRadians(0)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(20,-53,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-10,-58,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20,-56,Math.toRadians(0)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(50,-46,Math.toRadians(0)),Math.toRadians(0))
                 .build();
 
