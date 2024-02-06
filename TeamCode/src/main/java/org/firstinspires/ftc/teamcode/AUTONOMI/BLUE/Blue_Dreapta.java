@@ -162,25 +162,46 @@ public class Blue_Dreapta extends LinearOpMode {
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(-34, 55, Math.toRadians(270.00)), Math.toRadians(270.00))
                 .setReversed(false)
-                 .build();
+                .build();
 
+        Action pixelstanga=drive.actionBuilder(beginPose)
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-33,35,Math.toRadians(325)),Math.toRadians(90))
+                .setTangent(Math.toRadians(-180))
+                .splineToLinearHeading(new Pose2d(-40,55,Math.toRadians(270)),Math.toRadians(-270))
+                .build();
+
+        Action pixelmijloc=drive.actionBuilder(beginPose)
+                .splineToLinearHeading(new Pose2d(-36,33,Math.toRadians(270)),Math.toRadians(270))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(-36, 55, Math.toRadians(270.00)), Math.toRadians(270.00))
+                .setTangent(Math.toRadians(-180))
+                .splineToLinearHeading(new Pose2d(-55,15,Math.toRadians(270)),Math.toRadians(270))
+                .build();
+
+        cPose=new Pose2d(-55,15,Math.toRadians(270));
+
+        Action catrebackdropdreapta=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(22, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51, 33, Math.toRadians(0)), Math.toRadians(0))
+                .build();
 
         cPose= new Pose2d(-34,55,Math.toRadians(270));
         Action catrebackdrop=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(270.00)), Math.toRadians(270.00))
+                .splineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(270)), Math.toRadians(270.00))
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(22, 12, Math.toRadians(0.00)), Math.toRadians(0))
-                .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(51.5, 30, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(22, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51, 33, Math.toRadians(0)), Math.toRadians(0))
                 .build();
-        cPose= new Pose2d(51.5,30,Math.toRadians(0));
+        cPose= new Pose2d(52,33,Math.toRadians(0));
         Action catrestack=drive.actionBuilder(cPose)
                 //.setTangent(Math.toRadians(-140))
                 //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(9,4,Math.toRadians(0)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(-63,4,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(9,2,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-61,7.5,Math.toRadians(0)),Math.toRadians(180))
                 .afterDisp(1,new SequentialAction(
                         new ParallelAction(
                                 intake.reversePixel(),
@@ -193,31 +214,127 @@ public class Blue_Dreapta extends LinearOpMode {
                         intake.stop()
                 ))
                 .build();
-        cPose= new Pose2d(-63,6,Math.toRadians(0));
+        cPose= new Pose2d(-61,6,Math.toRadians(0));
         Action catrebackdrop2=drive.actionBuilder(cPose)
                 .setReversed(false)
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(-58, 10, Math.toRadians(0)), Math.toRadians(0))
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(20, 10, Math.toRadians(0)), Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(52.5,39.5,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51,34,Math.toRadians(0)),Math.toRadians(0))
                 .build();
                 //.setTangent(0)
                 //.splineToLinearHeading(new Pose2d(8, 4, Math.toRadians(0)), Math.toRadians(0))
+        cPose=new Pose2d(50,34,Math.toRadians(0));
+        Action Parking=drive.actionBuilder(cPose)
+                .setTangent(90)
+                .splineToLinearHeading(new Pose2d(49,20,Math.toRadians(0)),Math.toRadians(90))
+                .build();
         waitForStart();
 
-        externalCamera.stopStreaming();
-        externalCamera.closeCameraDevice();
+//        externalCamera.stopStreaming();
+//        externalCamera.closeCameraDevice();
 
         if(PropZone=="LEFT"){
-            Actions.runBlocking(
-                    LeftLine
-
-            );
+            Actions.runBlocking(new SequentialAction(
+                    pixelstanga,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    catrestack,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop2,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    Parking
+            ));
         } else if(PropZone=="MIDDLE") {
-            Actions.runBlocking(
-                    MiddleLine
-            );
+            Actions.runBlocking(new SequentialAction(
+                    pixelmijloc,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdropdreapta,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("autonom")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    catrestack,
+                    new SequentialAction(
+                            new SequentialAction(
+                                    catrebackdrop2,
+                                    new ParallelAction(
+                                            outtake.pivot(DefVal.pivot60),
+                                            outtake.roll(DefVal.roll60),
+                                            outtake.runToPosition("low")
+                                    )
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.upperHook("open"),
+                                    outtake.bottomHook("open")
+                            ),
+                            new SleepAction(1),
+                            new ParallelAction(
+                                    outtake.pivot(DefVal.pivot0),
+                                    outtake.roll(DefVal.roll0)
+                            ),
+                            new SleepAction(1),
+                            outtake.runToPosition("ground")
+                    ),
+                    Parking
+            ));
         } else if(PropZone=="RIGHT") {
             Actions.runBlocking(new SequentialAction(
                     pixeldreapta,
@@ -240,13 +357,13 @@ public class Blue_Dreapta extends LinearOpMode {
                                     outtake.pivot(DefVal.pivot0),
                                     outtake.roll(DefVal.roll0)
                             ),
-                            new SleepAction(0.7),
+                            new SleepAction(1),
                             outtake.runToPosition("ground")
                     ),
                             catrestack,
                     new SequentialAction(
                             new SequentialAction(
-                                    catrebackdrop,
+                                    catrebackdrop2,
                                     new ParallelAction(
                                             outtake.pivot(DefVal.pivot60),
                                             outtake.roll(DefVal.roll60),
@@ -263,11 +380,11 @@ public class Blue_Dreapta extends LinearOpMode {
                                     outtake.pivot(DefVal.pivot0),
                                     outtake.roll(DefVal.roll0)
                             ),
-                            new SleepAction(0.7),
+                            new SleepAction(1),
                             outtake.runToPosition("ground")
-                    )
-
-                            ));
+                    ),
+                    Parking
+            ));
         }
         while (opModeIsActive()) {
             //telemetry
