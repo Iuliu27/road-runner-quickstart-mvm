@@ -99,21 +99,27 @@ public class Blue_Stanga extends LinearOpMode {
 
         Action BeginToBackboardLeft=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(-71,-36,Math.toRadians(180)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-50,-36,Math.toRadians(180)),Math.toRadians(90))
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-71.3,-36,Math.toRadians(180)),Math.toRadians(180))
                 .build();
 
         cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
 
         Action BeginToBackboardMiddle=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(-71 ,-31,Math.toRadians(180)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-50 ,-31,Math.toRadians(180)),Math.toRadians(90))
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-71.3,-31,Math.toRadians(180)),Math.toRadians(180))
                 .build();
 
         cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
 
         Action BeginToBackboardRight=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(-71 ,-25,Math.toRadians(180)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-50 ,-25,Math.toRadians(180)),Math.toRadians(90))
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-71.3,-25,Math.toRadians(180)),Math.toRadians(180))
                 .build();
 
         cPose=new Pose2d(-70.3,-36,Math.toRadians(180));
@@ -122,7 +128,7 @@ public class Blue_Stanga extends LinearOpMode {
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(-34.5,-54,Math.toRadians(180)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(12,-53,Math.toRadians(180)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(41.5,-26,Math.toRadians(180)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(41.8,-26,Math.toRadians(180)),Math.toRadians(0))
                 .afterDisp(5,new SequentialAction(
                         new ParallelAction(
                                 intake.reversePixel(),
@@ -143,7 +149,7 @@ public class Blue_Stanga extends LinearOpMode {
                 //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(12,-58,Math.toRadians(180)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-72,-33,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-71,-34,Math.toRadians(180)),Math.toRadians(180))
                 .build();
 
         cPose=new Pose2d(42,-27,Math.toRadians(180));

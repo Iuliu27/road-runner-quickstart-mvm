@@ -34,8 +34,8 @@ public class DefVal {
     public static double iLevel1 = 0.01;
     public static double iLevel2 = 0.095;
     public static double iLevel3 = 0.13;
-    public static double iLevel4 = 0.16;
-    public static double iLevel5 = 0.18;
+    public static double iLevel4 = 0.14;
+    public static double iLevel5 = 0.16;
 
     public static double iLevel6 = 0.35;
 
@@ -46,7 +46,7 @@ public class DefVal {
     public static double pivot60 = 7.1;
 
     public static double roll0 = 0.7;
-    public static double roll60 = 4.2;
+    public static double roll60 = 4.1;
 
     public static double pitchPositive = 10;
     public static double pitchNegative = -15;

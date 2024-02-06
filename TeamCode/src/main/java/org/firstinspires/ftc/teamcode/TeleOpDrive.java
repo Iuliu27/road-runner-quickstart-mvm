@@ -188,7 +188,7 @@ public class TeleOpDrive extends LinearOpMode {
                             new Vector2d(
                                     gamepad2.left_stick_y/(1+triggerSlowdown),
                                     gamepad2.left_stick_x/(1+triggerSlowdown)),
-                            -gamepad2.right_stick_x/(1+triggerSlowdown*3)
+                            -gamepad2.right_stick_x/(1+triggerSlowdown*2)
                     );
                     break;
                 case HEADING_LOCK:
