@@ -172,35 +172,25 @@ public class Blue_Dreapta extends LinearOpMode {
                 .build();
 
         Action pixelmijloc=drive.actionBuilder(beginPose)
-                .splineToLinearHeading(new Pose2d(-36,33,Math.toRadians(270)),Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-36,32,Math.toRadians(270)),Math.toRadians(270))
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(-36, 55, Math.toRadians(270.00)), Math.toRadians(270.00))
                 .setTangent(Math.toRadians(-180))
-                .splineToLinearHeading(new Pose2d(-55,15,Math.toRadians(270)),Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-55,9,Math.toRadians(270)),Math.toRadians(270))
                 .build();
 
-        cPose=new Pose2d(-55,15,Math.toRadians(270));
-
+        cPose=new Pose2d(-55,9,Math.toRadians(270));
         Action catrebackdropdreapta=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(22, 12, Math.toRadians(0)), Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(51, 33, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51, 37.5, Math.toRadians(0)), Math.toRadians(0))
                 .build();
-
-        cPose= new Pose2d(-34,55,Math.toRadians(270));
-        Action catrebackdrop=drive.actionBuilder(cPose)
-                .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(270)), Math.toRadians(270.00))
-                .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(22, 12, Math.toRadians(0)), Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(51, 33, Math.toRadians(0)), Math.toRadians(0))
-                .build();
-        cPose= new Pose2d(52,33,Math.toRadians(0));
-        Action catrestack=drive.actionBuilder(cPose)
+        cPose= new Pose2d(51,37.5,Math.toRadians(0));
+        Action catrestackmiddle=drive.actionBuilder(cPose)
                 //.setTangent(Math.toRadians(-140))
                 //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(9,2,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(9,0,Math.toRadians(0)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-61,7.5,Math.toRadians(0)),Math.toRadians(180))
                 .afterDisp(1,new SequentialAction(
                         new ParallelAction(
@@ -214,7 +204,79 @@ public class Blue_Dreapta extends LinearOpMode {
                         intake.stop()
                 ))
                 .build();
-        cPose= new Pose2d(-61,6,Math.toRadians(0));
+        cPose= new Pose2d(-61,7.5,Math.toRadians(0));
+        Action catrebackdropmiddle=drive.actionBuilder(cPose)
+                .setReversed(false)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-58, 10, Math.toRadians(0)), Math.toRadians(0))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20, 10, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50,34,Math.toRadians(0)),Math.toRadians(0))
+                .build();
+        cPose= new Pose2d(-34,55,Math.toRadians(270));
+        Action catrebackdrop=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(270)), Math.toRadians(270.00))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(22, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50, 33, Math.toRadians(0)), Math.toRadians(0))
+                .build();
+        cPose= new Pose2d(-40,55,Math.toRadians(270));
+        Action catrebackdropleft=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(270)), Math.toRadians(270.00))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(22, 12, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50, 44, Math.toRadians(0)), Math.toRadians(0))
+                .build();
+        cPose= new Pose2d(51,44,Math.toRadians(0));
+        Action catrestackleft=drive.actionBuilder(cPose)
+                //.setTangent(Math.toRadians(-140))
+                //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(9,0,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-61,7.5,Math.toRadians(0)),Math.toRadians(180))
+                .afterDisp(1,new SequentialAction(
+                        new ParallelAction(
+                                intake.reversePixel(),
+                                intake.angle(5)
+                        ),
+                        //new SleepAction(1.5),
+                        new ParallelAction(
+                                outtake.bottomHook("closed"),outtake.upperHook("closed")
+                        ),
+                        intake.stop()
+                ))
+                .build();
+        cPose= new Pose2d(-61,7.5,Math.toRadians(0));
+        Action catrebackdrop2left=drive.actionBuilder(cPose)
+                .setReversed(false)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-58, 10, Math.toRadians(0)), Math.toRadians(0))
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20, 10, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50,34,Math.toRadians(0)),Math.toRadians(0))
+                .build();
+        cPose= new Pose2d(51,33,Math.toRadians(0));
+        Action catrestack=drive.actionBuilder(cPose)
+                //.setTangent(Math.toRadians(-140))
+                //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(9,2,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-62,8,Math.toRadians(0)),Math.toRadians(180))
+                .afterDisp(1,new SequentialAction(
+                        new ParallelAction(
+                                intake.reversePixel(),
+                                intake.angle(5)
+                        ),
+                        //new SleepAction(1.5),
+                        new ParallelAction(
+                                outtake.bottomHook("closed"),outtake.upperHook("closed")
+                        ),
+                        intake.stop()
+                ))
+                .build();
+        cPose= new Pose2d(-61,7.5,Math.toRadians(0));
         Action catrebackdrop2=drive.actionBuilder(cPose)
                 .setReversed(false)
                 .setTangent(Math.toRadians(0))
@@ -240,7 +302,7 @@ public class Blue_Dreapta extends LinearOpMode {
                     pixelstanga,
                     new SequentialAction(
                             new SequentialAction(
-                                    catrebackdrop,
+                                    catrebackdropleft,
                                     new ParallelAction(
                                             outtake.pivot(DefVal.pivot60),
                                             outtake.roll(DefVal.roll60),
@@ -260,10 +322,10 @@ public class Blue_Dreapta extends LinearOpMode {
                             new SleepAction(1),
                             outtake.runToPosition("ground")
                     ),
-                    catrestack,
+                    catrestackleft,
                     new SequentialAction(
                             new SequentialAction(
-                                    catrebackdrop2,
+                                    catrebackdrop2left,
                                     new ParallelAction(
                                             outtake.pivot(DefVal.pivot60),
                                             outtake.roll(DefVal.roll60),
@@ -313,7 +375,7 @@ public class Blue_Dreapta extends LinearOpMode {
                     catrestack,
                     new SequentialAction(
                             new SequentialAction(
-                                    catrebackdrop2,
+                                    catrebackdropmiddle,
                                     new ParallelAction(
                                             outtake.pivot(DefVal.pivot60),
                                             outtake.roll(DefVal.roll60),

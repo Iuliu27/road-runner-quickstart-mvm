@@ -147,8 +147,8 @@ public class Blue_Stanga extends LinearOpMode {
         Action ToBackboardLeft=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(-90))
                 //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(12,-58,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-56,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(12,-59,Math.toRadians(180)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-34.5,-58,Math.toRadians(180)),Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-71,-34,Math.toRadians(180)),Math.toRadians(180))
                 .build();
 
@@ -524,7 +524,7 @@ public class Blue_Stanga extends LinearOpMode {
             if (!contours.isEmpty()) {
                 double maxArea = -1;
                 int maxAreaIdx = -1;
-                double minContourArea =  190;
+                double minContourArea =  200;
 
                 for (int i = 0; i < contours.size(); i++) {
                     double area = Imgproc.contourArea(contours.get(i));

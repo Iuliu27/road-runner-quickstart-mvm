@@ -31,9 +31,9 @@ public class DefVal {
     public static double intakeMotorPower = 0.65;
     public static double intakeRollerPower = 0.5;
 
-    public static double iLevel1 = 0.01;
-    public static double iLevel2 = 0.095;
-    public static double iLevel3 = 0.13;
+    public static double iLevel1 = 0.008;
+    public static double iLevel2 = 0.085;
+    public static double iLevel3 = 0.09;
     public static double iLevel4 = 0.14;
     public static double iLevel5 = 0.16;
 

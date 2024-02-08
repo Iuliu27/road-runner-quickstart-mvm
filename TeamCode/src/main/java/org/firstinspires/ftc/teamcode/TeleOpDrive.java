@@ -380,15 +380,27 @@ public class TeleOpDrive extends LinearOpMode {
             }
 
             //Intake level adjustment
-            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)
-                    || robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
-                intakeLevel++; if(intakeLevel>6) intakeLevel=1;
-                runningActions.add(intake.angle(intakeLevel));
+//            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)
+//                    /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)*/){
+//                intakeLevel++; if(intakeLevel>6) intakeLevel=1;
+//                runningActions.add(intake.angle(intakeLevel));
+//            }
+//            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)
+//                    /*|| robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)*/){
+//                intakeLevel--; if(intakeLevel<1) intakeLevel=6;
+//                runningActions.add(intake.angle(intakeLevel));
+//            }
+            if(robot.gamepad1Ex.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)>0){
+                runningActions.add(intake.angle(6));
             }
-            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)
-                    || robot.gamepad2Ex.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
-                intakeLevel--; if(intakeLevel<1) intakeLevel=6;
-                runningActions.add(intake.angle(intakeLevel));
+            if(robot.gamepad1Ex.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER)>0){
+                runningActions.add(intake.angle(1));
+            }
+            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
+                runningActions.add(intake.angle(5));
+            }
+            if(robot.gamepad1Ex.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+                runningActions.add(intake.angle(3));
             }
 
             //Plane and hanging, only works if 50s have passed since teleop started, might be a pain to troubleshoot!!!!!

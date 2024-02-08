@@ -82,7 +82,7 @@ public class Red_Dreapta extends LinearOpMode {
 
         Action LineMiddleBack = drive.actionBuilder(beginPose) //mijloc  1
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(11,-35,Math.toRadians(90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(11,-30,Math.toRadians(90)),Math.toRadians(90))
                 .setTangent(Math.toRadians(270)) //-90  ,270,180
                 //robotul este in pozitia principala
                 .splineToLinearHeading(new Pose2d(11,-56,Math.toRadians(90)),Math.toRadians(-90))
@@ -96,36 +96,36 @@ public class Red_Dreapta extends LinearOpMode {
                 .splineToLinearHeading(new Pose2d(11,-56,Math.toRadians(90)),Math.toRadians(-90))
                 .build();
 
-        cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
+        cPose= new Pose2d(11,-56,Math.toRadians(90));
 
         Action BeginToBackboardLeft=drive.actionBuilder(cPose) //1
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(50,-25,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(45.5,-25,Math.toRadians(0)),Math.toRadians(90))
                 .build();
 
-        cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
+        cPose= new Pose2d(11,-56,Math.toRadians(90));
 
         Action BeginToBackboardMiddle=drive.actionBuilder(cPose)   //1
                 .setTangent(Math.toRadians(90))
                 //begin backboard
-                .splineToLinearHeading(new Pose2d(50,-31,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(45.5,-28,Math.toRadians(0)),Math.toRadians(90))
                 .build();
 
-        cPose= new Pose2d(-34.5,-56,Math.toRadians(90));
+        cPose= new Pose2d(11,-56,Math.toRadians(90));
 
         Action BeginToBackboardRight=drive.actionBuilder(cPose)  //1
                 .setTangent(Math.toRadians(90))
                 //begin backboard
-                .splineToLinearHeading(new Pose2d(50,-36,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(45.5,-36,Math.toRadians(0)),Math.toRadians(90))
                 .build();
 
-        cPose=new Pose2d(-70.3,-36,Math.toRadians(180));
+        cPose=new Pose2d(45.5,-28,Math.toRadians(0));
 
         Action ToStack=drive.actionBuilder(cPose)  //1
                 .setTangent(Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(31.8,-53,Math.toRadians(0)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-30,-53,Math.toRadians(0)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-63,-37,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(31.8,-63,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-30,-64,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-64.5,-34,Math.toRadians(0)),Math.toRadians(180))
                 .afterDisp(5,new SequentialAction(
                         new ParallelAction(
                                 intake.reversePixel(),
@@ -139,47 +139,16 @@ public class Red_Dreapta extends LinearOpMode {
                 ))
                 .build();
 
-        cPose=new Pose2d(42,-27,Math.toRadians(180));
+        cPose=new Pose2d(-63,-37,Math.toRadians(0));
 
-        Action ToBackboardLeft=drive.actionBuilder(cPose) //1
+        Action ToBackboardRight=drive.actionBuilder(cPose) //1
                 .setTangent(Math.toRadians(-90))
                 .splineToLinearHeading(new Pose2d(-10,-58,Math.toRadians(0)),Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(20,-56,Math.toRadians(0)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(50,-46,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(45.5,-36,Math.toRadians(0)),Math.toRadians(0))
                 .build();
 
-        cPose=new Pose2d(42,-27,Math.toRadians(180));
-
-        Action ToBackboardMiddle=drive.actionBuilder(cPose)
-                .setTangent(Math.toRadians(-90))
-                //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(12,-59,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-57,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-72,-29,Math.toRadians(180)),Math.toRadians(180))
-                .build();
-
-        cPose=new Pose2d(42,-27.5,Math.toRadians(180));
-
-        Action ToBackboardRight=drive.actionBuilder(cPose)
-                .setTangent(Math.toRadians(-90))
-                //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(12,-59,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-57,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-71,-25,Math.toRadians(180)),Math.toRadians(180))
-                .build();
-
-        Action ToBackboard1=drive.actionBuilder(cPose)
-                .setTangent(Math.toRadians(-90))
-                //.splineToLinearHeading(new Pose2d(36,-29,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(12,-60.5,Math.toRadians(180)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-34.5,-60,Math.toRadians(180)),Math.toRadians(180))
-                .build();
-
-        Action ToBackboard2=drive.actionBuilder(cPose)
-                .splineToLinearHeading(new Pose2d(-71,-33,Math.toRadians(180)),Math.toRadians(180))
-                .build();
-
-        cPose=new Pose2d(-71,-33,Math.toRadians(180));
+        cPose=new Pose2d(50,-36,Math.toRadians(0));
 
         Action Parking=drive.actionBuilder(cPose)  //1
                 .setTangent(Math.toRadians(90))
@@ -217,10 +186,7 @@ public class Red_Dreapta extends LinearOpMode {
                             outtake.runToPosition("ground")
                     ),
                     ToStack,
-                    ToBackboardLeft,
-                    /*ToBackboard1,
-                    new SleepAction(0.5),
-                    ToBackboard2,*/
+                    ToBackboardRight,
                     new SequentialAction(
                             new ParallelAction(
                                     new ParallelAction(
@@ -270,10 +236,7 @@ public class Red_Dreapta extends LinearOpMode {
                             outtake.runToPosition("ground")
                     ),
                     ToStack,
-                    ToBackboardLeft,
-                    /*ToBackboard1,
-                    new SleepAction(0.5),
-                    ToBackboard2,*/
+                    ToBackboardRight,
                     new SequentialAction(
                             new ParallelAction(
                                     new ParallelAction(
@@ -323,10 +286,7 @@ public class Red_Dreapta extends LinearOpMode {
                             outtake.runToPosition("ground")
                     ),
                     ToStack,
-                    ToBackboardLeft,
-                    /*ToBackboard1,
-                    new SleepAction(0.5),
-                    ToBackboard2,*/
+                    ToBackboardRight,
                     new SequentialAction(
                             new ParallelAction(
                                     new ParallelAction(
