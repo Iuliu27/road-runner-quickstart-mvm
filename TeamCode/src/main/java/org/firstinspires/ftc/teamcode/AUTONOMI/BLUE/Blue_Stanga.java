@@ -198,6 +198,7 @@ public class Blue_Stanga extends LinearOpMode {
         if(PropZone=="LEFT"){
             Actions.runBlocking(new SequentialAction(
                     LineLeftBack,
+                    new SleepAction(12),
                     new SequentialAction(
                             new ParallelAction(
                                     BeginToBackboardLeft,
@@ -220,11 +221,12 @@ public class Blue_Stanga extends LinearOpMode {
                             new SleepAction(1),
                             outtake.runToPosition("ground")
                     ),
-                    ToStack,
+                    Parking
+                    /*ToStack,
                     ToBackboardLeft,
-                    /*ToBackboard1,
+                    ToBackboard1,
                     new SleepAction(0.5),
-                    ToBackboard2,*/
+                    ToBackboard2,
                     new SequentialAction(
                             new ParallelAction(
                                     new ParallelAction(
@@ -246,11 +248,12 @@ public class Blue_Stanga extends LinearOpMode {
                             new SleepAction(1),
                             outtake.runToPosition("ground")
                     ),
-                    Parking
+                    Parking*/
             ));
         } else if(PropZone=="MIDDLE") {
             Actions.runBlocking(new SequentialAction(
                     LineMiddleBack,
+                    new SleepAction(12),
                     new SequentialAction(
                             new ParallelAction(
                                     BeginToBackboardMiddle,
@@ -273,11 +276,12 @@ public class Blue_Stanga extends LinearOpMode {
                             new SleepAction(1),
                             outtake.runToPosition("ground")
                     ),
-                    ToStack,
+                    Parking
+                    /*ToStack,
                     ToBackboardLeft,
-                    /*ToBackboard1,
+                    ToBackboard1,
                     new SleepAction(0.5),
-                    ToBackboard2,*/
+                    ToBackboard2,
                     new SequentialAction(
                             new ParallelAction(
                                     new ParallelAction(
@@ -299,11 +303,12 @@ public class Blue_Stanga extends LinearOpMode {
                             new SleepAction(1),
                             outtake.runToPosition("ground")
                     ),
-                    Parking
+                    Parking*/
             ));
         } else if(PropZone=="RIGHT") {
             Actions.runBlocking(new SequentialAction(
                     LineRightBack,
+                    new SleepAction(12),
                     new SequentialAction(
                             new ParallelAction(
                                     BeginToBackboardRight,
@@ -326,11 +331,12 @@ public class Blue_Stanga extends LinearOpMode {
                             new SleepAction(1),
                             outtake.runToPosition("ground")
                     ),
-                    ToStack,
+                    Parking
+                    /*ToStack,
                     ToBackboardLeft,
-                    /*ToBackboard1,
+                    ToBackboard1,
                     new SleepAction(0.5),
-                    ToBackboard2,*/
+                    ToBackboard2,
                     new SequentialAction(
                             new ParallelAction(
                                     new ParallelAction(
@@ -352,7 +358,7 @@ public class Blue_Stanga extends LinearOpMode {
                             new SleepAction(1),
                             outtake.runToPosition("ground")
                     ),
-                    Parking
+                    Parking*/
             ));
         }
         while (opModeIsActive()) {

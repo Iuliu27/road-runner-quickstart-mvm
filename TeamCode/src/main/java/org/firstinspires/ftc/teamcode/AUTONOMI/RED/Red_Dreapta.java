@@ -483,7 +483,7 @@ private void calculateSquarePosition() {
     if (!contours.isEmpty()) {
         double maxArea = -1;
         int maxAreaIdx = -1;
-        double minContourArea =  19;
+        double minContourArea =  190;
 
         for (int i = 0; i < contours.size(); i++) {
             double area = Imgproc.contourArea(contours.get(i));

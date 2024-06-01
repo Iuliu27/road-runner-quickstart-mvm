@@ -28,25 +28,25 @@ public class DefVal {
     public static double hangHang = 10;
     public static double hangup = 15;
 
-    public static double intakeMotorPower = 0.65;
-    public static double intakeRollerPower = 0.5;
+    public static double intakeMotorPower = 0.75;
+    public static double intakeRollerPower = 1;
 
-    public static double iLevel1 = 0.008;
+    public static double iLevel1 = 0.01;
     public static double iLevel2 = 0.085;
     public static double iLevel3 = 0.09;
     public static double iLevel4 = 0.14;
-    public static double iLevel5 = 0.16;
+    public static double iLevel5 = 0.162;
 
     public static double iLevel6 = 0.35;
 
     public static double yaw0 = 0.75;
     public static double yaw90 = 1.3;
 
-    public static double pivot0 = 2.55;
+    public static double pivot0 = 2.5;
     public static double pivot60 = 7.1;
 
-    public static double roll0 = 0.7;
-    public static double roll60 = 4.1;
+    public static double roll0 = 0.95;
+    public static double roll60 = 4.4;
 
     public static double pitchPositive = 10;
     public static double pitchNegative = -15;

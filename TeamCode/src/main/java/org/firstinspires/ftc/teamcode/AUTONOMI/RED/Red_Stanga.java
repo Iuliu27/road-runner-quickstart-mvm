@@ -82,12 +82,12 @@ public class Red_Stanga extends LinearOpMode {
         Action pixelstanga=drive.actionBuilder(beginPose)  //1
                 .splineToLinearHeading(new Pose2d(-41, -35, Math.toRadians(125)), Math.toRadians(-180))
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(-34, -55, Math.toRadians(90)), Math.toRadians(270.00))
+                .splineToLinearHeading(new Pose2d(-34.5, -55, Math.toRadians(90)), Math.toRadians(270.00))
                 .build();
 
         Action pixelmijloc=drive.actionBuilder(beginPose) //1
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(-34,-30,Math.toRadians(90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-34,-28,Math.toRadians(90)),Math.toRadians(90))
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(-36, -55, Math.toRadians(90)), Math.toRadians(270.00))
                 .setTangent(Math.toRadians(-180))
@@ -98,18 +98,50 @@ public class Red_Stanga extends LinearOpMode {
 
         Action catrebackdropmijloc=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(22, -9, Math.toRadians(0)), Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(52, -30, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(35, -9, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50.9, -30, Math.toRadians(0)), Math.toRadians(0))
                 .build();
 
         cPose= new Pose2d(-55,-9,Math.toRadians(90));
 
-        Action catrebackdrop=drive.actionBuilder(cPose)  //1
+        Action catrebackdrop=drive.actionBuilder(cPose)  //1   ///stanga
                 //.setTangent(Math.toRadians(90))
                 //.splineToLinearHeading(new Pose2d(-34, -9, Math.toRadians(90)), Math.toRadians(90))
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(22, -9, Math.toRadians(0)), Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(52, -24.5, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51, -24.5, Math.toRadians(0)), Math.toRadians(0))
+                .build();
+
+        //impart traiectoria in 2, si dau un turn to 90 de grad
+
+        cPose=new Pose2d(-34, -55, Math.toRadians(90));
+
+        Action catrebackdrop_1Left=drive.actionBuilder(cPose)
+                .splineToLinearHeading(new Pose2d(-34,-9,Math.toRadians(90)),Math.toRadians(90))
+                .turn(-Math.toRadians(90))
+                .build();
+
+        cPose=new Pose2d(-34,-9,Math.toRadians(0));
+
+        Action catrebackdrop_2Left=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(35,-9,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(52.4,-24.2,Math.toRadians(0)),Math.toRadians(0))
+                .build();
+
+        cPose=new Pose2d(-34,-55,Math.toRadians(90));
+
+        Action catrebackdrop_1Right=drive.actionBuilder(cPose)
+                .splineToLinearHeading(new Pose2d(-34.5,-7,Math.toRadians(90)),Math.toRadians(90))
+                .turn(-Math.toRadians(90))
+                .build();
+
+        cPose=new Pose2d(-34.5,-7,Math.toRadians(0));
+
+        Action catrebackdrop_2Right=drive.actionBuilder(cPose)
+                .setTangent(Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(25,-7,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(52.5,-35.5 ,Math.toRadians(0)),Math.toRadians(0))
                 .build();
 
         cPose=new Pose2d(-55,-9,Math.toRadians(90));
@@ -117,7 +149,7 @@ public class Red_Stanga extends LinearOpMode {
         Action catrebackdropdreapta=drive.actionBuilder(cPose)
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(22, -9, Math.toRadians(0)), Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(51, -34, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(49.7, -34, Math.toRadians(0)), Math.toRadians(0))
                 .build();
 
         cPose= new Pose2d(51,-33,Math.toRadians(0));
@@ -127,7 +159,7 @@ public class Red_Stanga extends LinearOpMode {
                 //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(9,-2,Math.toRadians(0)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-60.5,-8,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-61.4,-8,Math.toRadians(0)),Math.toRadians(180))
                 .afterDisp(1,new SequentialAction(
                         new ParallelAction(
                                 intake.reversePixel(),
@@ -147,8 +179,8 @@ public class Red_Stanga extends LinearOpMode {
                 //.setTangent(Math.toRadians(-140))
                 //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(9,-2,Math.toRadians(0)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-63,-8,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(9,-1,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-62.3,-6.5,Math.toRadians(0)),Math.toRadians(180))
                 .afterDisp(1,new SequentialAction(
                         new ParallelAction(
                                 intake.reversePixel(),
@@ -158,6 +190,7 @@ public class Red_Stanga extends LinearOpMode {
                         new ParallelAction(
                                 outtake.bottomHook("closed"),outtake.upperHook("closed")
                         ),
+                        intake.reverse(),
                         intake.stop()
                 ))
                 .build();
@@ -168,7 +201,7 @@ public class Red_Stanga extends LinearOpMode {
                 //.splineToLinearHeading(new Pose2d(-55,4,Math.toRadians(0)),Math.toRadians(-180))
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(9,-2,Math.toRadians(0)),Math.toRadians(180))
-                .splineToLinearHeading(new Pose2d(-63,-7,Math.toRadians(0)),Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(-62.5,-7,Math.toRadians(0)),Math.toRadians(180))
                 .afterDisp(1,new SequentialAction(
                         new ParallelAction(
                                 intake.reversePixel(),
@@ -185,10 +218,10 @@ public class Red_Stanga extends LinearOpMode {
         Action catrebackdrop2=drive.actionBuilder(cPose)  //1
                 .setReversed(false)
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(-58, -8, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-58, -6, Math.toRadians(0)), Math.toRadians(0))
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(20, -8, Math.toRadians(0)), Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(51,-25,Math.toRadians(0)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(20, -6, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(52.5,-26,Math.toRadians(0)),Math.toRadians(0))
                 .build();
         //.setTangent(0)
         //.splineToLinearHeading(new Pose2d(8, 4, Math.toRadians(0)), Math.toRadians(0))
@@ -207,7 +240,9 @@ public class Red_Stanga extends LinearOpMode {
                     pixelstanga,
                     new SequentialAction(
                             new SequentialAction(
-                                    catrebackdrop,
+                                    //catrebackdrop,
+                                    catrebackdrop_1Left,
+                                    catrebackdrop_2Left,
                                     new ParallelAction(
                                             outtake.pivot(DefVal.pivot60),
                                             outtake.roll(DefVal.roll60),
@@ -251,6 +286,7 @@ public class Red_Stanga extends LinearOpMode {
                             outtake.runToPosition("ground")
                     ),
                     Parking
+
             ));
         } else if(PropZone=="MIDDLE") {
             Actions.runBlocking(new SequentialAction(
@@ -305,10 +341,13 @@ public class Red_Stanga extends LinearOpMode {
             ));
         } else if(PropZone=="RIGHT") {
             Actions.runBlocking(new SequentialAction(
+                    //new SleepAction(12),
                     pixeldreapta,
                     new SequentialAction(
                             new SequentialAction(
-                                    catrebackdropdreapta,
+                                    //catrebackdropdreapta,
+                                    catrebackdrop_1Right,
+                                    catrebackdrop_2Right,
                                     new ParallelAction(
                                             outtake.pivot(DefVal.pivot60),
                                             outtake.roll(DefVal.roll60),
@@ -329,6 +368,7 @@ public class Red_Stanga extends LinearOpMode {
                             outtake.runToPosition("ground")
                     ),
                     catrestackdreapta,
+                    new SleepAction(2),
                     new SequentialAction(
                             new SequentialAction(
                                     catrebackdrop2,
@@ -526,7 +566,7 @@ private void calculateSquarePosition() {
     if (!contours.isEmpty()) {
         double maxArea = -1;
         int maxAreaIdx = -1;
-        double minContourArea =  19;
+        double minContourArea =  190;
 
         for (int i = 0; i < contours.size(); i++) {
             double area = Imgproc.contourArea(contours.get(i));

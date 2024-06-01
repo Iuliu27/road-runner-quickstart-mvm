@@ -52,8 +52,8 @@ public class HardwareMapping {
     public CRServo intakeServoRoller;
     public Servo planeLauncherServo;
 
-    public Servo  outtakeClawUpper, outtakeClawBottom;
-    public ServoEx outtakePitchLeft, outtakePitchRight,  outtakeRollLeft, outtakeRollRight;
+    public Servo  /*outtakeClawUpper,*/ outtakeClawBottom;
+    public ServoEx outtakePitchLeft, /*outtakePitchRight,  outtakeRollLeft,*/ outtakeRollRight;
 
     public DcMotorEx intakeMotor;
     // public DcMotorEx hangMotor;
@@ -80,17 +80,17 @@ public class HardwareMapping {
         intakeServoRight = hwMap.get(Servo.class, "intakeServoRight");
         intakeServoRoller = hwMap.get(CRServo.class, "intakeServoRoller");
         outtakePitchLeft = new SimpleServo(hwMap, "outtakePitchLeft", Math.toRadians(0), Math.toRadians(350));
-        outtakePitchRight = new SimpleServo(hwMap, "outtakePitchRight", Math.toRadians(0), Math.toRadians(350));
+        //outtakePitchRight = new SimpleServo(hwMap, "outtakePitchRight", Math.toRadians(0), Math.toRadians(350));
         //outtakeYaw = new SimpleServo(hwMap, "outtakeYaw", Math.toRadians(0), Math.toRadians(90));
-        outtakeRollLeft = new SimpleServo(hwMap, "outtakeRollLeft", Math.toRadians(0), Math.toRadians(350));
+        //outtakeRollLeft = new SimpleServo(hwMap, "outtakeRollLeft", Math.toRadians(0), Math.toRadians(350));
         outtakeRollRight = new SimpleServo(hwMap, "outtakeRollRight", Math.toRadians(0), Math.toRadians(350));
         //outtakeLatch = hwMap.get(Servo.class, "outtakeLatch");
         outtakeClawBottom = hwMap.get(Servo.class, "outtakeClawBottom");
-        outtakeClawUpper = hwMap.get(Servo.class, "outtakeClawUpper");
+        ///outtakeClawUpper = hwMap.get(Servo.class, "outtakeClawUpper");
         planeLauncherServo = hwMap.get(Servo.class, "planeLauncherServo");
 
         outtakePitchLeft.setInverted(true);
-        outtakeRollLeft.setInverted(true);
+        //outtakeRollLeft.setInverted(true);
         intakeServoRight.setDirection(Servo.Direction.REVERSE);
         //outtakeClawBottom.setDirection(Servo.Direction.REVERSE);
         //outtakeClawUpper.setDirection(Servo.Direction.REVERSE);
@@ -336,7 +336,7 @@ public class HardwareMapping {
                 public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                     if(init){
                         outtakePitchLeft.turnToAngle(angle);
-                        outtakePitchRight.turnToAngle(angle);
+                        //outtakePitchRight.turnToAngle(angle);
                         init = false;
                     }
                     return false;
@@ -354,8 +354,8 @@ public class HardwareMapping {
                 @Override
                 public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                     outtakePitchLeft.rotateBy(angle);              //Should only be called when outtake is at 60degrees already
-                    outtakePitchRight.rotateBy(angle);             //todo: try to think of a better way
-                    outtakeRollLeft.rotateBy(angle);               //naive implementation
+                    //outtakePitchRight.rotateBy(angle);             //todo: try to think of a better way
+                    //outtakeRollLeft.rotateBy(angle);               //naive implementation
                     outtakeRollRight.rotateBy(angle);
                     return false;
                 }
@@ -387,7 +387,7 @@ public class HardwareMapping {
                 @Override
                 public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                     if(init){
-                        outtakeRollLeft.turnToAngle(angle);
+                        //outtakeRollLeft.turnToAngle(angle);
                         outtakeRollRight.turnToAngle(angle);
                         init=false;
                     }
@@ -415,10 +415,10 @@ public class HardwareMapping {
                 public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                     switch(state){
                         case "open":
-                            outtakeClawUpper.setPosition(DefVal.upperHookOpen);
+                            ///outtakeClawUpper.setPosition(DefVal.upperHookOpen);
                             break;
                         case "closed" :
-                            outtakeClawUpper.setPosition(DefVal.upperHookClosed);
+                            ///outtakeClawUpper.setPosition(DefVal.upperHookClosed);
                             break;
                     }
                     return false;
@@ -538,6 +538,15 @@ public class HardwareMapping {
                 public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                     intakeMotor.setPower(DefVal.intakeMotorPower);
                     intakeServoRoller.setPower(-DefVal.intakeRollerPower);
+                    return false; //Run for 1.5s then stop
+                }
+            };}
+        private Action invers(){
+            return new Action() {
+                @Override
+                public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                    intakeMotor.setPower(-DefVal.intakeMotorPower);
+                    intakeServoRoller.setPower(DefVal.intakeRollerPower);
                     return false; //Run for 1.5s then stop
                 }
             };}
